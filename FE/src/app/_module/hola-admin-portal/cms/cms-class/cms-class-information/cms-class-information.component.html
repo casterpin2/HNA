@@ -1,0 +1,23 @@
+<t-template-content-layout>
+    <ng-container breadcrumbTemplate>
+        <div>
+            <h2 class="header-page">Thông tin lớp học</h2>
+            <nz-breadcrumb>
+                <nz-breadcrumb-item>Lớp học</nz-breadcrumb-item>
+                <nz-breadcrumb-item>Thông tin lớp học</nz-breadcrumb-item>
+            </nz-breadcrumb>
+        </div>
+    </ng-container>
+    <ng-container contentTemplate>
+        <nz-tabset (nzSelectChange)="selectChange($event)">
+            <nz-tab [nzTitle]="'Thông tin học sinh' | translate">
+                <app-cms-class-student *ngIf="tabIndex === 0"></app-cms-class-student>
+            </nz-tab>
+            <nz-tab [nzTitle]="'Danh sách học phí' | translate">
+                <app-cms-class-fee *ngIf="tabIndex === 1"></app-cms-class-fee>
+            </nz-tab>
+        </nz-tabset>
+      
+
+    </ng-container>
+</t-template-content-layout>

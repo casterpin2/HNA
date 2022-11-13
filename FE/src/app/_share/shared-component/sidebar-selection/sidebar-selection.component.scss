@@ -1,0 +1,27 @@
+.add-icon {
+    position: absolute;
+    right: 40px;
+    z-index: 5;
+    top: 1.2em;
+    cursor: pointer;
+    &:hover {
+        color: mediumturquoise;
+    }
+}
+
+.ul-shared-component {
+    position: relative;
+}
+
+.selected {
+    background: #0090da;
+    color: white;
+    i {
+        color: white;
+    }
+}
+
+nz-list {
+    max-height: 300px;
+    overflow-y: auto;
+}

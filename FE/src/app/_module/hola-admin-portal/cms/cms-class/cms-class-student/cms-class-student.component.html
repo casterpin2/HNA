@@ -1,0 +1,17 @@
+<div class="action-btn mb-1">
+
+    <button nz-button nzType="primary" (click)="addUser()">
+        Thêm Học sinh
+    </button>
+</div>
+
+
+<div *ngIf="!renderData">
+    <app-system-share [isNoCheckStatus]="false"  [isShowDropdownStatus]="false" 
+    (emitDelete)="deleteEvent($event)"
+    [isShowDropdownCategory]="false"  [urlFree]="urlFree" [arrayValues]="arrayValues" [isPagging]="false" 
+    [arrayHeader]="arrayHeader"  [isAction]="true"
+   [dataSourceCategory]="categoryDataSource"
+    [routerNameDetail]="'news/view'"></app-system-share>
+</div>
+<app-cms-class-add-user *ngIf="visibleForm"  [visibleForm]="visibleForm" (closeModal)="closeModal()"></app-cms-class-add-user>

@@ -1,0 +1,40 @@
+.btn {
+    border: none;
+    // color: #fff !important;
+    box-shadow: none;
+  }
+  nz-select {
+    padding-right: 8px;
+    width: 120px;
+  }
+  .categry-items{
+    background: white;
+    border-radius: 7px;
+    overflow-y: auto;
+    max-height: calc(100vh - 225px);
+    margin-top: 25px;
+  }
+  
+  .categry-items a{
+    margin-left: 0.5em;
+  }
+  .item-description p{
+    margin: 2px;
+  }
+  .search-box {
+    padding: 8px;
+  }
+  
+  .search-box input {
+    width: 188px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .search-box button {
+    width: 90px;
+  }
+  
+  .search-button {
+    margin-right: 8px;
+  }

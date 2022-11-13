@@ -1,0 +1,47 @@
+<div class="frm-login">
+    <nz-content>
+        <div nz-row nzJustify="center">
+            <div nz-col nzSpan="8">
+                <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+                    <div class="mb-1">
+                        <!-- <img nz-image width="200px" height="200px" nzSrc="../../../assets/images/web/logo.jfif" al t="" /> -->
+                        <nz-page-header-title>{{'LOGIN.TITLE' | translate}}</nz-page-header-title>                        
+                    </div>
+                    <nz-form-item>
+                        <nz-form-control [nzErrorTip]="'LOGIN.EMPTY_NAME' | translate">
+                            <nz-input-group nzPrefixIcon="user">
+                                <input type="text" nz-input formControlName="userName" placeholder="Username" />
+                            </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control [nzErrorTip]="'LOGIN.EMPTY_PASS' | translate">
+                            <nz-input-group nzPrefixIcon="lock">
+                                <input type="password" nz-input formControlName="password" placeholder="Password" />
+                            </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <div class="ant-form-item-explain ant-form-item-explain-error" *ngIf="isError">
+                        <span>{{'LOGIN.ERROR' | translate}}</span>
+                    </div>
+                    <div nz-row class="login-form-margin">
+                        <div nz-col [nzSpan]="12">
+                            <label nz-checkbox formControlName="remember">
+                              <span>Remember me</span>
+                            </label>
+                        </div>
+                        <div nz-col [nzSpan]="12">
+                            <a class="login-form-forgot">Forgot password</a>
+                        </div>
+                    </div>
+                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button> Or
+                    <a>register now!</a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </nz-content>
+</div>

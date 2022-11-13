@@ -1,0 +1,39 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+      "baseUrl": "./",
+      "outDir": "./dist/out-tsc",
+      "lib": ["es5", "es6", "dom", "dom.iterable"],
+      "paths": {
+          "@modules/*": ["src/app/_module/*"],
+          "@share/*": ["src/app/_share/*"],
+          "@core/*": ["src/app/_core/*"],
+          "@layout/*": ["src/app/_layout/*"],
+          "@assets/*": ["src/assets/*"],
+          "@models/*": ["src/app/_models/*"],
+          "@services/*": ["src/app/_services/*"],
+      },
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "noImplicitReturns": false,
+      "noFallthroughCasesInSwitch": true,
+      "sourceMap": true,
+      "declaration": false,
+      "downlevelIteration": true,
+      "experimentalDecorators": true,
+      "moduleResolution": "node",
+      "importHelpers": true,
+      "target": "es5",
+      "module": "es2020",
+      "strictNullChecks": false,
+      "lib": ["es2018", "dom"],
+      
+  },
+  "angularCompilerOptions": {
+      "enableI18nLegacyMessageIdFormat": false,
+      "strictInjectionParameters": true,
+      "strictInputAccessModifiers": true,
+      "strictTemplates": true,
+      "skipLibCheck": true
+  }
+}

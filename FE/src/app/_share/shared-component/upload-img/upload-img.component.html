@@ -1,0 +1,14 @@
+<div class="text-center">
+    <div>
+        <img *ngIf="!avatarUrl" width="200px" height="200px" src={{defaultImg}} alt="" />
+        <img *ngIf="avatarUrl" width="200px" height="200px" src={{avatarUrl}} referrerpolicy="no-referrer"
+            style="width: 100%;max-width: 200px;" />
+    </div>
+    
+    <nz-upload [nzShowUploadList]="false" [nzBeforeUpload]="beforeUpload">
+        <button nz-button style="width: 200px;">
+            <i nz-icon nzType="upload"></i>
+            Upload
+        </button>
+    </nz-upload>
+</div>

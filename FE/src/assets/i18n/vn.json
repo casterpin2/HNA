@@ -1,0 +1,138 @@
+{
+   "CREATE_NEW": "Tạo mới",
+   "COMMON": {
+      "ACTION": "Thao tác",
+      "EDIT": "Sửa",
+      "ADD": "Tạo Mới",
+      "DELETE": "Xóa",
+      "LANGUAGE": "Ngôn ngữ"
+   },
+   "PRODUCT": {
+      "TITLE": "Khóa học",
+      "NAME": "Tên khóa học",
+      "PRICE": "Giá (vnđ)",
+      "PRICE_SALE": "Giảm Giá (vnđ)",
+      "PRIORITY": "Ưu tiên",
+      "STATUS": "Trạng thái",
+      "DESCRIPTION": "Mô tả ngắn",
+      "SEO_TITLE": "SEO Title",
+      "SEO_DESCRIPTION": "SEO Description",
+      "SEO_301": "SEO 301",
+      "SEO_ROBOT": "SEO Robot",
+      "URL": "Tên đường dẫn",
+      "STRUCTURE": "Cấu trúc khóa học",
+      "VIDEO_INTRO": "Video giới thiệu",
+      "PUBLISH": "Phát hành khóa học",
+      "STT": "Số thứ tự",
+      "FILE": "Tạo khóa học từ file",
+      "COMBO_LINK": "Link combo khi mua khóa học",
+      "START_TIME": "Thời gian bắt đầu",
+      "END_TIME": "Thời gian kết thúc",
+      "TIME_STUDY": "Thời gian học (ngày)",
+      "SHOW_CHILD": "Hiện bài con",
+      "SCROLL": "Scroll làm bài tập",
+      "FREE": "Free => Có giá",
+      "CENTER": "Chọn Cơ sở",
+      "DICTIONARY": "Từ điển",
+      "BXH": "Bảng xếp hạng Exp",
+      "LANGUAGE": "Ngôn ngữ",
+      "SHOW_HOME_PAGE": "Hiển thị trang chủ",
+      "REGIME": "Chế độ",
+      "SHOW_ICON": "Hiển thị icon khóa học mới",
+      "TYPE_P": "Kiểu khóa học",
+      "STT_HOMEPAGE": "Xuất hiện trang chủ",
+      "BANNER": "Ảnh banner",
+      "CATEGORY": {
+         "TITLE": "Danh Mục",
+         "NAME": "Tên danh mục",
+         "IMG": "Ảnh danh mục",
+         "DOMAIN": "Domain",
+         "DESCRIPTION": "Mô tả",
+         "SELECT_CATEGORY": "Chọn danh mục"
+      },
+      "MSG": {
+         "EMPTY_COURSE": "Tên khóa học không được để trống",
+         "EMPTY_CATEGORY": "Tên danh mục không được để trống",
+         "PRIORITY": "Ưu tiên không được để trống",
+         "DES": "Mô tả không được để trống",
+         "PRICE": "Giá không được để trống",
+         "ADD_SUCCESS": "Tạo thành công",
+         "EMPTY_NAME": "Không được để trống"
+      },
+      "TITLE_COURSE": "Khóa học",
+      "TITLE_CATEGGORY": "Danh mục"
+   },
+   "LOGIN": {
+      "TITLE": "Đăng Nhập",
+      "EMPTY_NAME": "Không được để trống",
+      "EMPTY_PASS": "Không được để trống",
+      "ERROR": "Tên đăng nhập hoặc mật khẩu Không Hợp lệ"
+   },
+   "SETTING": {
+      "QUESTION": {
+         "Q_TYPE": "Loại câu hỏi",
+         "Q_PROGRAM": "Khung trương trình",
+         "Q_RATE_TEST": "Đánh giá bài thi"
+      }
+   },
+   "LESSON": {
+      "STT": "Số thứ tự",
+      "LEARNING_NAME": "Tên bài giảng",
+      "RELATED_TIME_TIME": "Thời gian phát hành",
+      "END_TIME_TIME": "Thời gian kết thúc",
+      "STATUS": "Trạng thái",
+      "MSG": {
+         "EMPTY_NAME": "Tên khóa học không được để trống"
+      }
+   },
+   "EXCRESISE": {
+      "NAME": "Tên bài tập",
+      "RELATED_TIME_TIME": "Thời gian phát hành",
+      "END_TIME_TIME": "Thời gian kết thúc",
+      "SHORT_DES": "Mô tả ngắn",
+      "NUMBER_QUESTION": "Số câu hỏi",
+      "TYPE": "Kiểu luyện tập",
+      "STATUS": "Trạng thái",
+      "NUMBER_EXCRESISE": "Sô lần làm bài 1 lần",
+      "MODE": "Chế độ làm bài",
+      "PRINT": "In đề khi làm bài",
+      "HIDE_QUESTION": "Ẩn câu hỏi",
+      "DESCRIPTION": "Mô tả",
+      "MSG": {
+         "EMPTY_NAME": "Không được để trống"
+      }
+   },
+   "ASSET": {
+      "NAME": "Tên file",
+      "SOURCE": "Nguồn",
+      "DATE": "Ngày"
+   },
+   "EXAM": {
+      "NAME": "Tên bài thi",
+      "TIME_WORK": "Thời gian làm bài",
+      "TOTAL_QUESTION": "Tông số câu hỏi",
+      "NUMBER_TRY": "Số lần làm bài",
+      "SCORE_PASS": "Điều kiện qua(% đúng)",
+      "SHOW_BXH": "Hiển thị bảng xếp hạng",
+      "DETAIL_VIEW": "Xem giải chi tiết",
+      "PRINT": "In bài thi",
+      "SCORE": "Balem điểm",
+      "PLATFORM": "Platform",
+      "IMG": "Avatar bài thi",
+      "IMPORT": "Thêm từ thư viện",
+      "FORM": "Tạo form đánh giá",
+      "COPY": "Sao chép câu hỏi",
+      "SCHEDULE": "Kịch bản thi",
+      "SHOW_RESULT": "Hiện kết quả thi",
+      "REF": "REF",
+      "NUMBER_STOP": "Số lần tạm dừng"
+   },
+   "PERMISSION": {
+      "ID": "Account",
+      "USER_NAME": "Tên người dùng",
+      "ROLE": "Vài trò",
+      "CATEGORY": "Danh mục",
+      "NAME":"Tên quyền",
+      "MSG":"Không được để trống"
+   }
+}

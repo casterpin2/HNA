@@ -1,0 +1,35 @@
+<ul nz-menu nzMode="inline" class="sider-menu ul-shared-component">
+    <li nz-submenu [nzTitle]="title" [nzIcon]="icon">
+        <div class="normal-padding">
+            <nz-radio-group [ngModel]="typeValue" (ngModelChange)="typeChange($event)">
+                <label nz-radio nzValue="0" class="flex-and-center mb-1">
+                    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                        <input type="text" nz-input placeholder readonly="Toàn thời gian" [ngModel] = "allTimeSelectedObj.label"/>
+                    </nz-input-group>
+                    <ng-template #suffixIconButton>
+                        <button nz-button nzType="default" nzSearch nz-popover [(nzPopoverVisible)]="dialogAllTimeShow"
+                        nzPopoverPlacement="right"
+                        nzPopoverTrigger="click" [nzPopoverContent]="contentTemplate"><i nz-icon nzType="right-square" nzTheme="outline"></i></button>
+                        <ng-template #contentTemplate>
+                            <div  class="all-time-picker-container" *ngIf="DataSource && DataSource.allTimeGroup">
+                                <div *ngFor="let group of DataSource.allTimeGroup">
+                                    <h4>
+                                        {{group.label}}
+                                    </h4>
+                                    <div class="sub-group" *ngFor="let subGroup of group.subGroup" (click)="allTimeSelected(subGroup)">
+                                        {{subGroup.label}}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </ng-template>
+                    </ng-template>
+                </label>
+                <label nz-radio nzValue="1" class="flex-and-center">
+                    <nz-range-picker [ngModel]="date" (ngModelChange)="dateRangeChange($event)"></nz-range-picker>
+                </label>
+            </nz-radio-group>
+
+        </div>
+    </li>
+</ul>

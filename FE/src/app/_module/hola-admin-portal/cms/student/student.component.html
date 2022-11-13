@@ -1,0 +1,94 @@
+
+<app-t-full-template-layout>
+    <ng-container breadcrumbTemplate>
+        <div>
+            <h2 class="header-page">Học sinh</h2>
+            <nz-breadcrumb>
+                <nz-breadcrumb-item>Trang chủ</nz-breadcrumb-item>
+                <nz-breadcrumb-item>
+                    <a>Tài khoản</a>
+                </nz-breadcrumb-item>
+                <nz-breadcrumb-item>Danh sách tài khoản</nz-breadcrumb-item>
+            </nz-breadcrumb>
+        </div>
+    </ng-container>
+    <ng-container headerBtnTemplate>
+        <div class="action-btn mb-1">
+            <button nz-button nzType="primary" (click)="addUser()">
+                Thêm tài khoản
+            </button>
+        </div>
+    </ng-container>
+
+    <ng-container contentTemplate>
+       
+
+        <nz-table class="w-auto-scroll" nzShowSizeChanger [nzData]="listOfCourse" [nzFrontPagination]="true"
+            [nzLoading]="loading" [nzTotal]="total" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
+            (nzQueryParams)="onQueryParamsChange($event)">
+            <thead>
+                <tr>
+                    <th nzColumnKey="avatar">Ảnh đại diện</th>
+                    <th nzCustomFilter nzColumnKey="fullName" [nzSortFn]="true">
+                        <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
+                            [nzDropdownMenu]="menu">
+                            <i nz-icon nzType="search"></i>
+                        </nz-filter-trigger>
+                        {{'Họ và tên' | translate}}
+                    </th>
+                    <th nzColumnKey="phoneNumber" [nzSortFn]="true">
+                        {{'Số điện thoại' | translate}}
+                    </th>
+                    <th nzColumnKey="username" [nzSortFn]="true">
+                        {{'Tài khoản' | translate}}
+                    </th>
+                    <th nzColumnKey="roleName" [nzSortFn]="true">
+                        {{'Vai trò' | translate}}
+                    </th>
+
+                    <th> {{'COMMON.ACTION' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let data of listOfCourse">
+                    <tr>
+                        <td>  <img width="50px" height="50px"  [src]="data.avatar ? data.avatar : defaultImg"></td>
+                        <td><a (click)="viewClass(data)">{{ data.fullName }}</a></td>
+                        <td>
+                            {{data.phoneNumber}}
+                        </td>
+                        <td>{{ data.username}}</td>
+                        <td>{{ data.roleName }}</td>
+                        <td>
+                            <button class="btn" nz-button (click)="updateUser(data)" ><i nz-icon nzType="edit"
+                                    nzTheme="outline">
+                                </i>
+                                <!-- {{'COMMON.EDIT' | translate}} -->
+                            </button>
+                            <button class="btn" nz-button (click)="deleteCourse(data)" ><i nz-icon nzType="delete"
+                                    nzTheme="outline">
+                                </i>
+                                <!-- {{'COMMON.EDIT' | translate}} -->
+                            </button>
+                        </td>
+                    </tr>
+
+                </ng-container>
+
+            </tbody>
+        </nz-table>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+            <div class="ant-table-filter-dropdown">
+                <div class="search-box">
+                    <ng-container [formGroup]="form">
+                        <input type="text" nz-input placeholder="Search name" formControlName='searchName' />
+                        <button nz-button nzSize="small" nzType="primary" (click)="search()"
+                            class="search-button">Search</button>
+                        <button nz-button nzSize="small" (click)="reset()">Reset</button>
+                    </ng-container>
+
+                </div>
+            </div>
+        </nz-dropdown-menu>
+    </ng-container>
+</app-t-full-template-layout>

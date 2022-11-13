@@ -1,0 +1,21 @@
+$lenght: 10;
+
+@function add-unit($col) {
+    @return #{$col}#{"rem"};
+}
+
+@for $i from 1 through $lenght {
+    //margin top
+    .mt-unit-#{$i} {
+        margin-top: #{$i}#{"rem"}   ;
+    }
+    .ml-unit-#{$i} {
+        margin-left: #{$i}#{"rem"}   ;
+    }
+    .mr-unit-#{$i} {
+        margin-right: #{$i}#{"rem"}   ;
+    }
+    .mb-unit-#{$i} {
+        margin-bottom: #{$i}#{"rem"}   ;
+    }
+}

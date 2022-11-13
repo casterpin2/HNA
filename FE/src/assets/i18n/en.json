@@ -1,0 +1,133 @@
+{
+   "CREATE_NEW": "Create New",
+   "COMMON": {
+      "ACTION": "Operation",
+      "EDIT": "Edit",
+      "ADD": "Create New",
+      "DELETE": "Delete",
+      "LANGUAGE": "Language"
+   },
+   "PRODUCT": {
+      "TITLE": "Course",
+      "NAME": "Course name",
+      "PRICE": "Price (VND)",
+      "PRICE_SALE": "Discount (VND)",
+      "PRIORITY": "Priority",
+      "STATUS": "Status",
+      "DESCRIPTION": "Short Description",
+      "SEO_TITLE": "SEO Title",
+      "SEO_DESCRIPTION": "SEO Description",
+      "SEO_301": "SEO 301",
+      "SEO_ROBOT": "SEO Robot",
+      "URL": "Pathname",
+      "STRUCTURE": "Course Structure",
+      "VIDEO_INTRO": "Introductory video",
+      "PUBLISH": "Course Release",
+      "STT": "Order number",
+      "FILE": "Create a course from a file",
+      "COMBO_LINK": "Combo link when buying the course",
+      "START_TIME": "Start Time",
+      "END_TIME": "End time",
+      "TIME_STUDY": "Time (day)",
+      "SHOW_CHILD": "Show subcards",
+      "SCROLL": "Scroll doing homework",
+      "FREE": "Free => Priced",
+      "CENTER": "Select Facility",
+      "DICTIONARY": "Dictionary",
+      "Leaderboard": "Exp Ranking",
+      "LANGUAGE": "Language",
+      "SHOW_HOME_PAGE": "Show home page",
+      "REGIME": "Mode",
+      "SHOW_ICON": "Show new course icon",
+      "TYPE_P": "Course Type",
+      "STT_HOMEPAGE": "The order in which the homepage appears",
+      "BANNER": "Banner image",
+      "CATEGORY": {
+         "TITLE": "Category",
+         "NAME": "Category Name",
+         "IMG": "Catalog Photo",
+         "DOMAIN": "Domain",
+         "DESCRIPTION": "Description",
+         "SELECT_CATEGORY": "Select Category"
+      },
+      "MSG": {
+         "EMPTY_COURSE": "Course name cannot be empty",
+         "EMPTY_CATEGORY": "Category name cannot be empty",
+         "PRIORITY": "Priority cannot be empty",
+         "DES": "Description cannot be empty",
+         "PRICE": "Price cannot be empty",
+         "ADD_SUCCESS": "Successfully created",
+         "EMPTY_NAME": "Cannot be empty"
+      },
+      "TITLE_COURSE": "Course",
+      "TITLE_CATEGGORY": "Category"
+   },
+   "LOGIN": {
+      "TITLE": "Login",
+      "EMPTY_NAME": "Cannot be empty",
+      "EMPTY_PASS": "Cannot be empty",
+      "ERROR": "Invalid Username or Password"
+   },
+   "SETTING": {
+      "QUESTION": {
+         "Q_TYPE": "Question Type",
+         "Q_PROGRAM": "Program Framework",
+         "Q_RATE_TEST": "Test Assessment"
+      }
+   },
+   "LESSON": {
+      "STT": "Order number",
+      "LEARNING_NAME": "Lecture Name",
+      "RELATED_TIME_TIME": "Release Time",
+      "END_TIME_TIME": "End time",
+      "STATUS": "Status",
+      "MSG": {
+         "EMPTY_NAME": "Course name cannot be empty"
+      }
+   },
+   "EXCRESISE": {
+      "NAME": "Assignment Name",
+      "RELATED_TIME_TIME": "Release Time",
+      "END_TIME_TIME": "End time",
+      "SHORT_DES": "Short Description",
+      "NUMBER_QUESTION": "Number of questions",
+      "TYPE": "Practice Type",
+      "STATUS": "Status",
+      "NUMBER_EXCRESISE": "Number of times to do the test once",
+      "MODE": "Exam mode",
+      "PRINT": "Print the question when doing the test",
+      "HIDE_QUESTION": "Hide question",
+      "DESCRIPTION": "Description",
+      "MSG": {
+         "EMPTY_NAME": "Cannot be empty"
+      },
+      "EXAM": {
+         "NAME": "Exam Name",
+         "TIME_WORK": "Time to do the test",
+         "TOTAL_QUESTION": "Number of questions",
+         "NUMBER_TRY": "Number of times",
+         "SCORE_PASS": "Pass condition(% true)",
+         "SHOW_BXH": "Show leaderboard",
+         "DETAIL_VIEW": "See detailed solution",
+         "PRINT": "Print the test",
+         "SCORE": "Balem point",
+         "PLATFORM": "Platform",
+         "IMG": "Exam Avatar",
+         "IMPORT": "Add from library",
+         "FORM": "Create evaluation form",
+         "COPY": "Copy question",
+         "SCHEDULE": "Exam Scenario",
+         "SHOW_RESULT": "Show test results",
+         "REF": "REF",
+         "NUMBER_STOP": "Số lần tạm dừng"
+      },
+      "PERMISSION": {
+         "ID": "Account",
+         "USER_NAME": "User name",
+         "ROLE": "Role",
+         "CATEGORY": "Category",
+         "NAME":"Tên quyền",
+         "MSG":"Cannot be empty"
+      }
+   }
+}

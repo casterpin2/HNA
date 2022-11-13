@@ -1,0 +1,34 @@
+.ant-layout-header {
+    background: none;
+}
+
+.bg-dark {
+    background: #0090da;
+}
+
+.bg-dark li.ant-menu-item-selected {
+    background: #0078b6 !important;
+    background-color: #0078b6 !important;
+    /* border-radius: 10px; */
+}
+
+.bg-dark .ant-menu-sub,
+.ant-menu.ant-menu-dark,
+.ant-menu.ant-menu-dark .ant-menu-sub ul.ant-menu-dark>li {
+    color: white;
+    /* background: #0078b6 !important; */
+}
+
+ul.ant-menu-dark>li:hover {
+    background: #0078b6 !important;
+    background-color: #0078b6 !important;
+    /* border-radius: 10px; */
+}
+
+.bg-light {
+    background: white;
+}
+
+nz-header {
+    margin-bottom: 2px !important;
+}

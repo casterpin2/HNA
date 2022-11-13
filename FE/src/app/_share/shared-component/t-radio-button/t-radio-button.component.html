@@ -1,0 +1,5 @@
+<div [ngClass]="{'normal-padding': defaultPadding}">
+    <nz-radio-group [disabled]="disabled" [ngModel]="ngModel" (ngModelChange)="outData($event)" ngDefaultControl>
+        <label *ngFor="let element of DataSource" nz-radio [nzValue]="element.value" [nzDisabled]="element.disabled">{{element.label}}</label>
+    </nz-radio-group>
+</div>

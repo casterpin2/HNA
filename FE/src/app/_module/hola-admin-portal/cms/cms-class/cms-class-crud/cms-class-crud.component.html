@@ -1,0 +1,55 @@
+<nz-modal [(nzVisible)]="visibleForm" [nzWidth]="900" [nzTitle]="modalTitle" [nzContent]="modalContent"
+    [nzFooter]="modalFooter" (nzOnCancel)="visibleModal()">
+    <form [formGroup]="form" >
+        <ng-template #modalTitle>Thêm mới lớp học</ng-template>
+        <ng-template #modalContent>
+            <ng-container *ngIf="isRender">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Tên</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Tên không được để trống">
+                        <input nz-input formControlName="name" id="name" />
+                    </nz-form-control>
+                </nz-form-item>
+    
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="statDate">Ngày bắt đầu</nz-form-label>
+                    <nz-form-control  [nzSm]="14" [nzXs]="24" [nzErrorTip]="'Không được để trống'">
+                        <nz-date-picker style="width: 100%;" formControlName="startDate"></nz-date-picker>
+                
+                      </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="enDate">Ngày kết thúc</nz-form-label>
+                    <nz-form-control  [nzSm]="14" [nzXs]="24" [nzErrorTip]="'Không được để trống'">
+                        <nz-date-picker style="width: 100%;" formControlName="endDate"></nz-date-picker>
+                
+                      </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="teacher">Giáo viên</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <nz-select style="width: 100%;" nzAllowClear formControlName="teacherId">
+                            <ng-container *ngFor="let item of teacherAccounts">
+                                <nz-option [nzValue]="item.id" [nzLabel]="item.name">
+                                </nz-option>
+                            </ng-container>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+    
+              
+            </ng-container>
+           
+
+
+
+        </ng-template>
+
+        <ng-template #modalFooter>
+            <button nz-button nzType="default" (click)="visibleModal()">Thoát</button>
+            <!-- <button nz-button nzType="default" (click)="form.reset();">Reset</button>           -->
+            <button nz-button nzType="primary" (click)="submitForm()">Save</button>
+        </ng-template>
+    </form>
+
+</nz-modal>

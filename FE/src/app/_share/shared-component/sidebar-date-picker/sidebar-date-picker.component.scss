@@ -1,0 +1,20 @@
+.all-time-picker-container>div {
+    margin: 10px;
+    .sub-group {
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 4px;
+        &:hover {
+            background: #0090da;
+            color: white;
+        }
+        &>div {
+            display: flex;
+            flex-direction: row;
+            &>div {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}

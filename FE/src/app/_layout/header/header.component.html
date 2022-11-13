@@ -1,0 +1,59 @@
+<header class="main-header">
+    <!-- Nav Menu -->
+    <!-- First Menu -->
+    <nav class="bg-light" [hidden]="!expandNav">
+        <ul nz-menu nzMode="horizontal" nzTheme="light" class="menu auto-width-layout px-0 d-flex-wrap first-menu">
+            <li nz-menu-item class="logo mx-0"><img style="border-radius: 10%;" height="40px"
+                    src="https://firebasestorage.googleapis.com/v0/b/educ-5445f.appspot.com/o/logo.png?alt=media&token=598ead33-a55b-4c2e-af00-4ae8dc6f9d1e" /></li>
+            <li nz-menu-item class="ml-auto">
+                <!-- <i class="fa-solid fa-book"></i>Sample Component -->
+            </li>
+       
+
+            <li nz-submenu nzTitle={{accName}} nzIcon="user">
+                <ul>
+                    <li nz-menu-item><i nz-icon nzType="setting" nzTheme="outline"></i>Setting</li>
+                    <li nz-submenu [nzTitle]="'COMMON.LANGUAGE' | translate" nzIcon="flag">
+                        <ul>
+                            <li nz-menu-item (click)="changeLang('vn')"><i class="fa-regular fa-flag"></i> VN</li>
+                            <li nz-menu-item (click)="changeLang('en')"><i class="fa-solid fa-flag-usa"></i> EN </li>
+                        </ul>
+                    </li>
+                    <li nz-menu-item (click)="handleLogout()"><i nz-icon nzType="logout" nzTheme="outline"></i>Logout
+                    </li>
+                   
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <!-- Nav Menu -->
+
+    <nav class="bg-dark" [hidden]="!expandNav">
+        <ul nz-menu nzMode="horizontal" nzTheme="dark" class="menu auto-width-layout px-0 bg-dark">
+            <ng-container *ngFor="let item of dataMenu; index as i">
+
+                <li nz-menu-item *ngIf="item?.children?.length === 0">
+                    <a routerLink={{item.routerLink}}><i nz-icon nzType={{item.icon}}></i> {{item.title}}</a>
+                </li>
+
+                <li nz-submenu nzTitle={{item.title}} nzIcon={{item.icon}} *ngIf="item?.children?.length > 0">
+                    <ul *ngIf="item?.children">
+                        <li nz-menu-item *ngFor="let cItem of item.children">
+                            <a routerLink={{cItem.routerLink}}>
+                                <i nz-icon nzType={{cItem.icon}} routerLink={{cItem.routerLink}}></i> {{cItem.title}}
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+            </ng-container>
+
+
+
+        </ul>
+    </nav>
+
+    <!-- End -->
+</header>

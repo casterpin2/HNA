@@ -1,0 +1,27 @@
+<div class="inner-content px-0 bg-transparent auto-width-layout">
+    <nz-layout class="inner-layout bg-transparent ">
+        <nz-sider nzWidth="250px" class="bg-transparent hide-if-collapse pl-default" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+            <!-- Side bar content -->
+            <ng-content select=[sideBarTemplate]></ng-content>
+            <!-- End -->
+        </nz-sider>
+        <nz-content class="inner-content sticky-any">
+            <div class="header-actions content-right" style="display: flex; justify-content: space-between;">
+                <div>
+                    <i class="trigger" nzTheme="twotone" style="font-size: 25px;" nz-icon [nzType]="isCollapsed ? 'right-circle' : 'left-circle'" (click)="isCollapsed = !isCollapsed"></i>
+                </div>
+                <div>
+                    <!-- Header action -->
+                    <ng-content select=[actionTemplate]></ng-content>
+                    <!-- End -->
+                </div>
+
+            </div>
+            <div class="card-simple-background main-content">
+                <!-- Content, table -->
+                <ng-content select=[contentTemplate]></ng-content>
+                <!-- End -->
+            </div>
+        </nz-content>
+    </nz-layout>
+</div>

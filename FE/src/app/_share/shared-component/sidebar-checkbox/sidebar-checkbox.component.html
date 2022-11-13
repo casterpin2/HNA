@@ -1,0 +1,6 @@
+<ul nz-menu nzMode="inline" class="sider-menu ul-shared-component">
+    <li nz-submenu nzOpen [nzTitle]="title" [nzIcon]="icon">
+        <t-check-box [defaultPadding]="true" ngDefaultControl [sbModel]="sbModel" (sbModelChange)="outData($event)">
+        </t-check-box>
+    </li>
+</ul>

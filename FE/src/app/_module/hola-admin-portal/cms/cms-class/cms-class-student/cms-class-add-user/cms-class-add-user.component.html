@@ -1,0 +1,14 @@
+
+
+<nz-modal [(nzVisible)]="visibleForm" class="modal-category" nzWidth="80%" [nzTitle]="'Thêm học sinh vào lớp học' | translate"
+(nzOnCancel)="cancelPopup()" (nzOnOk)="handleOk()" nzOkText="Lưu" nzCancelText="Hủy">
+<ng-container *nzModalContent>
+    <div>
+        <app-system-share [hideHeader]="true"  [isNoCheckStatus]="false"  [isShowDropdownStatus]="false" 
+        [isShowDropdownCategory]="false"  [urlFree]="urlFree" [arrayValues]="arrayValues" [isPagging]="true" 
+        [arrayHeader]="arrayHeader"   [isAction]="false"
+        (emitChangeItem)="getUserSelected($event)"
+        ></app-system-share>
+    </div>
+</ng-container>
+</nz-modal>
