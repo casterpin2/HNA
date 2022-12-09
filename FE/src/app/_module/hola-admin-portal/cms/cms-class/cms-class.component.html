@@ -12,7 +12,7 @@
         </div>
     </ng-container>
     <ng-container headerBtnTemplate>
-        <div class="action-btn mb-1">
+        <div class="action-btn mb-1" *ngIf="!hideBtn">
             <button nz-button nzType="primary" (click)="addUser()">
                 Thêm lớp học
             </button>
@@ -22,27 +22,27 @@
     <ng-container contentTemplate>
        
 
-        <nz-table class="w-auto-scroll" nzShowSizeChanger [nzData]="listOfCourse" [nzFrontPagination]="true"
+        <nz-table class="w-auto-scroll" nzShowSizeChanger [nzData]="listOfCourse" [nzFrontPagination]="false"
             [nzLoading]="loading" [nzTotal]="total" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
             (nzQueryParams)="onQueryParamsChange($event)">
             <thead>
                 <tr>
              
-                    <th nzCustomFilter nzColumnKey="name" [nzSortFn]="true">
+                    <th nzCustomFilter nzColumnKey="name" >
                         <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
                             [nzDropdownMenu]="menu">
                             <i nz-icon nzType="search"></i>
                         </nz-filter-trigger>
                         {{'Tên lớp' | translate}}
                     </th>
-                    <th nzColumnKey="phoneNumber" [nzSortFn]="true">
+                    <th nzColumnKey="phoneNumber" >
                         {{'Ngày bắt đầu' | translate}}
                     </th>
-                    <th nzColumnKey="username" [nzSortFn]="true">
+                    <th nzColumnKey="username" >
                         {{'Ngày kết thúc' | translate}}
                     </th>
 
-                    <th> {{'COMMON.ACTION' | translate}}</th>
+                    <th *ngIf="!hideBtn"> {{'COMMON.ACTION' | translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,8 +54,8 @@
                             {{data.startDate |date : dateFormat}}
                         </td>
                         <td>{{ data.endDate |date : dateFormat}}</td>
-                        <td>
-                            <button class="btn" nz-button (click)="updateUser(data)" ><i nz-icon nzType="edit"
+                        <td *ngIf="!hideBtn">
+                            <button class="btn"  nz-button (click)="updateUser(data)" ><i nz-icon nzType="edit"
                                     nzTheme="outline">
                                 </i>
                                 <!-- {{'COMMON.EDIT' | translate}} -->

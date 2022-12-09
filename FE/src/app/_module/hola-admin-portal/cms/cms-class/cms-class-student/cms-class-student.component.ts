@@ -28,6 +28,9 @@ export class CmsClassStudentComponent implements OnInit {
     },
   ]
   visibleForm = false;
+  visibleModalFee =false;
+  visibleModalAttendence =false;
+  userId:string;
   public urlFree: string;
   arrayValues: ValuesSystem[] = [
     {
@@ -51,6 +54,7 @@ export class CmsClassStudentComponent implements OnInit {
   isRouteNew = false;
   actionDelete = false;
   renderData = false;
+  hideBtn = false;
   constructor(private router: Router, private cmsService: CmsService, private activatedRoute: ActivatedRoute,
     private message: NzMessageService) {
 
@@ -60,8 +64,9 @@ export class CmsClassStudentComponent implements OnInit {
 
 
     const idGetParams = this.activatedRoute.snapshot.params['id'];
-    this.urlFree = 'class/student/' + idGetParams;
+    this.urlFree = 'users/getStudentOfClass/' + idGetParams;
     this.getClassById();
+    this.hideBtnByRole();
     this.renderData = false;
 
   }
@@ -69,60 +74,15 @@ export class CmsClassStudentComponent implements OnInit {
     this.router.navigate(['setting/news/crud']);
   }
 
-  routeCategory() {
-    this.router.navigate(['setting/news-category']);
-  }
-  getIdCategory(data: any) {
-    this.idCategory = data;
-    this.urlFree = `Article/getByCategory/${data}`;
-  }
-  eventChangeLocation(data: any) {
-    this.cmsService.postDataFreeURL(data, `Article/displayOrder/${this.idCategory}`).subscribe(res => {
-      this.message.success("Đổi vị trí thành công");
-    })
-  }
-  clearId() {
-    this.idCategory = '';
-    this.urlFree = '';
-    if (this.isRouteNew) {
-      this.router.navigate(['setting/news']);
-    }
-  }
-  updateStatus(result: any) {
-    let objectIds = [] as any;
-    result.data.forEach((item: string) => {
-      objectIds.push({ id: item });
-    })
-    const postData = {
-      "articleIds": objectIds,
-      "status": result.value
-    }
-    this.isUpdate = true;
-    this.cmsService.postDataFreeURL(postData, 'Article/updatestatus').subscribe(res => {
-      this.message.success("Đổi trạng thái bài viết thành công");
-      this.isUpdate = false;
-    }, (err) => {
-      this.isUpdate = false;
-    })
-  }
+
+ 
+ 
+  
   deleteEvent(data: any) {
-    // let objectIds = [] as any;
-    // data.forEach((item: string) => {
-    //   objectIds.push({ id: item });
-    // })
-    // const postData = {
-    //   "articleIds": objectIds
-    // }
-    // this.isUpdate = true;
-    // this.cmsService.postDataFreeURL(postData, 'Article/deleteMultipe').subscribe(res => {
-    //   this.message.success("Xóa bài viết thành công");
-    //   this.isUpdate = false;
-    // }, (err:any) => {
-    //   this.isUpdate = false;
-    // })
-    let url = 'class/removeUser/' + this.activatedRoute.snapshot.params['id'];
+   
+    let url = `users/deleteUserClass/` + this.activatedRoute.snapshot.params['id'];
     this.renderData = true;
-    this.cmsService.postDataFreeURL({ userId: data }, url).subscribe(res => {
+    this.cmsService.postDataFreeURL(data, url).subscribe(res => {
       this.message.success("Xóa học sinh thành công thành công");
       this.renderData = false;
     
@@ -134,7 +94,7 @@ export class CmsClassStudentComponent implements OnInit {
   public getClassById() {
     const idGetParams = this.activatedRoute.snapshot.params['id'];
     this.cmsService.getAllFreeUrl(`class/${idGetParams}`).subscribe((res: any) => {
-      this.headerBreadCurm = res.data[0].name
+      this.headerBreadCurm = res.name
     })
   }
   closeModal() {
@@ -144,6 +104,24 @@ export class CmsClassStudentComponent implements OnInit {
   addUser() {
     this.renderData = true;
     this.visibleForm = true;
+  }
+  modalFeeData(data:boolean){
+    this.visibleModalFee = false;
+  }
+  getEmitFeeBtn(data:string){
+    this.userId = data;
+    this.visibleModalFee = true;
+  }
+  modalAttendenceData(data:string){
+    this.userId = data;
+    this.visibleModalAttendence = true;
+  }
+  modalAttendenceCloseData(data:boolean){
+    console.log(data);
+    this.visibleModalAttendence = false;
+  }
+  hideBtnByRole(){
+    this.hideBtn = localStorage.getItem('role') == "2"? true : false;
   }
 }
 

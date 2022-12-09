@@ -1,0 +1,57 @@
+<app-header-client></app-header-client>
+
+<section class="contact-area pt-130 pb-130" style="background-color: #fff;">
+    <div class="container" >
+        <div class="contact-form-area">
+            <div class="section-title mb-40 text-center">
+                <h4>ĐĂNG KÝ NHẬN THÔNG TIN TƯ VẤN ?</h4> <br class="d-none d-md-block"> Nhà trường sẽ liên hệ với phu huynh sớm nhất.
+            </div>
+            <div nz-row >
+                <form nz-form nz-col [nzXs]="24" nzSm="24" nzXl="24" nzMd="24" nzLg="24"  [formGroup]="contactForm" [nzLayout]="'vertical'">
+                   
+                    <nz-form-item >
+                        <nz-form-label [nzRequired]="true" [nzFor]="'fullname'">{{"HỌ VÀ TÊN BỐ MẸ" |
+                            translate}}
+                        </nz-form-label>
+                        <nz-form-control [nzErrorTip]="'Không được để trống'|translate">
+                            <input nz-input 
+                                [formControlName]="'fullname'" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item  >
+                        <nz-form-label [nzRequired]="true" [nzFor]="'phoneno'">{{"SỐ ĐIỆN THOẠI LIÊN HỆ" |
+                            translate}}
+                        </nz-form-label>
+                        <nz-form-control [nzErrorTip]="'Không được để trống'|translate">
+                            <input nz-input
+                                [formControlName]="'phoneno'" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item >
+                        <nz-form-label [nzRequired]="true" [nzFor]="'email'">{{"ĐỊA CHỈ EMAIL" |
+                            translate}}
+                        </nz-form-label>
+                        <nz-form-control [nzErrorTip]="'Không được để trống'|translate">
+                            <input nz-input
+                                [formControlName]="'email'" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item >
+                        <nz-form-label [nzRequired]="true" [nzFor]="'message'">{{"NỘI DUNG QUAN TÂM" |
+                            translate}}
+                        </nz-form-label>
+                        <nz-form-control [nzErrorTip]="'Không được để trống'|translate">
+                            <textarea nz-input rows="4"  nzAutosize
+                             [nzAutosize]="{ minRows: 3 }" [formControlName]="'message'"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                </form>
+                <div class="input-group">
+                    <button  class="filled-btn bg-blue-chalk" (click)="onSubmit()">Đăng ký <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div> <!-- /.contact-respond -->
+        </div>
+    </div> <!-- /.container -->
+</section> <!-- /.contact-area -->
+<app-client-footer></app-client-footer>

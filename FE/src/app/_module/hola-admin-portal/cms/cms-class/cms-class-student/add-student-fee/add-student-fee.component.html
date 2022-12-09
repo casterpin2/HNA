@@ -1,0 +1,27 @@
+
+
+<nz-modal [(nzVisible)]="isShowPopup" nzWidth="80%"  [nzTitle]="modalTitle" [nzContent]="modalContent"
+    [nzFooter]="modalFooter" (nzOnCancel)="cancelPopup()">
+    
+        <ng-template #modalTitle>Học phí</ng-template>
+        <ng-template #modalContent>
+            <app-system-share *ngIf="render" [isNoCheckStatus]="false"  [isShowDropdownStatus]="false" 
+               
+            [isShowDropdownCategory]="false"   [urlFree]="urlFree" [arrayValues]="arrayValues" [isPagging]="false" 
+            [arrayHeader]="arrayHeader" [hideHeader]="true" (emitChangeItem)="getUserSelected($event)"
+            [dataSelectedOutSide]="feeSaveData"
+            [routerNameDetail]="'news/view'"></app-system-share>
+
+
+
+        </ng-template>
+
+        <ng-template #modalFooter>
+          
+            <button nz-button *ngIf="!hideFooter" nzType="default" (click)="cancelPopup()">Thoát</button>
+            <!-- <button nz-button nzType="default" (click)="form.reset();">Reset</button>           -->
+            <button nz-button *ngIf="!hideFooter" nzType="primary" (click)="handleOk()">Save</button>
+        </ng-template>
+   
+
+</nz-modal>

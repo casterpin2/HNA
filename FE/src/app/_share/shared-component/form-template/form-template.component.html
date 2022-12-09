@@ -1,116 +1,123 @@
 <ng-container [formGroup]="form">
 
-    <ng-container [ngSwitch]="formItem.type">
-      <!-- Input text -->
-  
-      <nz-form-item *ngSwitchCase="'TextBox'">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <input nz-input placeholder="{{formItem.placeHolder | translate}}" [formControlName]="formItem.name" (blur)="emitValue(formItem)"
-            [maxlength]="formItem.maxlength" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item *ngSwitchCase="'Password'">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <input nz-input type="password" placeholder="{{formItem.placeHolder | translate}}" [formControlName]="formItem.name" (blur)="emitValue(formItem)"
-            [maxlength]="formItem.maxlength" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item *ngSwitchCase="'Number'" style="width: 100%;">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <nz-input-number nzPlaceHolder="{{formItem.placeHolder  | translate}}" [formControlName]="formItem.name" [nzMin]="0"
-            [nzMax]="formItem.max? formItem.max :maxValue"></nz-input-number>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item *ngSwitchCase="'Select'">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <nz-select [formControlName]="formItem.name">
-            <ng-container *ngFor="let item of formItem.dataSource">
-              <nz-option [nzValue]="item.id" [nzLabel]="item.name">
-              </nz-option>
-            </ng-container>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item *ngSwitchCase="'TextArea'">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <textarea nz-input rows="4" placeholder="{{formItem.placeHolder  | translate}}" nzAutosize [maxlength]="formItem.maxlength"   [nzAutosize]="{ minRows: 3 }"
-            [formControlName]="formItem.name"></textarea>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item *ngSwitchCase="'TreeSelect'">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <nz-tree-select style="width: 100%" nzVirtualHeight="300px" [nzExpandedKeys]="formItem.expandKey"
-            [nzNodes]="formItem.nodes" nzShowSearch [nzCheckable]="true" nzPlaceHolder="{{formItem.placeHolder}}"
-            [formControlName]="formItem.name">
-          </nz-tree-select>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item *ngSwitchCase="typeColumn.FILE">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
-            <button nz-button>
-              <i nz-icon nzType="upload"></i>
-              Select File
-            </button>
-          </nz-upload>
-        </nz-form-control>
-  
-      </nz-form-item>
-      <nz-form-item *ngSwitchCase="typeColumn.DATE">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <nz-date-picker style="width: 100%;" [formControlName]="formItem.name"></nz-date-picker>
-  
-        </nz-form-control>
-  
-      </nz-form-item>
-      <nz-form-item *ngSwitchCase="typeColumn.DATE_TIME">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <nz-date-picker style="width: 100%;" [formControlName]="formItem.name" nzShowTime [nzFormat]="formItem.format">
-          </nz-date-picker>
-  
-        </nz-form-control>
-  
-      </nz-form-item>
-      <nz-form-item *ngSwitchCase="typeColumn.VIEW">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <span>
-            {{formItem.value}}
-          </span>
-  
-        </nz-form-control>
-  
-      </nz-form-item>
-      <nz-form-item *ngSwitchCase="typeColumn.CHECKBOX">
-        <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
-        </nz-form-label>
-        <nz-form-control [nzErrorTip]="formItem.msg|translate">
-          <label nz-checkbox  [formControlName]="formItem.name" [nzChecked]="formItem.value">
+  <ng-container [ngSwitch]="formItem.type">
+    <!-- Input text -->
+
+    <nz-form-item *ngSwitchCase="'TextBox'">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <input nz-input placeholder="{{formItem.placeHolder | translate}}" [formControlName]="formItem.name"
+          (blur)="emitValue(formItem)" [maxlength]="formItem.maxlength" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="'Number'" style="width: 100%;">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <nz-input-number nzPlaceHolder="{{formItem.placeHolder  | translate}}" [formControlName]="formItem.name"
+          [nzMin]="0" [nzMax]="formItem.max? formItem.max :maxValue"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="'Select'">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <nz-select [formControlName]="formItem.name">
+          <ng-container *ngFor="let item of formItem.dataSource">
+            <nz-option [nzValue]="item.id" [nzLabel]="item.name">
+            </nz-option>
+          </ng-container>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="'TextArea'">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <textarea nz-input rows="4" placeholder="{{formItem.placeHolder  | translate}}" nzAutosize
+          [maxlength]="formItem.maxlength" [nzAutosize]="{ minRows: 3 }" [formControlName]="formItem.name"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="'EDITOR'">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <ckeditor nz-input [formControlName]="formItem.name">
+        </ckeditor>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="'TreeSelect'">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <nz-tree-select style="width: 100%" nzVirtualHeight="300px" [nzExpandedKeys]="formItem.expandKey"
+          [nzNodes]="formItem.nodes" nzShowSearch [nzCheckable]="true" nzPlaceHolder="{{formItem.placeHolder}}"
+          [formControlName]="formItem.name">
+        </nz-tree-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="typeColumn.FILE">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
+          <button nz-button>
+            <i nz-icon nzType="upload"></i>
+            Select File
+          </button>
+        </nz-upload>
+      </nz-form-control>
+
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="typeColumn.DATE">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <nz-date-picker style="width: 100%;" [formControlName]="formItem.name"></nz-date-picker>
+
+      </nz-form-control>
+
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="typeColumn.DATE_TIME">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <nz-date-picker style="width: 100%;" [formControlName]="formItem.name" nzShowTime [nzFormat]="formItem.format">
+        </nz-date-picker>
+
+      </nz-form-control>
+
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="typeColumn.VIEW">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <span>
+          {{formItem.value}}
+        </span>
+
+      </nz-form-control>
+
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="typeColumn.CHECKBOX">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <label nz-checkbox [formControlName]="formItem.name" [nzChecked]="formItem.value">
         </label>
-  
-        </nz-form-control>
-  
-      </nz-form-item>
-  
-      <!-- Select menu -->
-    </ng-container>
+
+      </nz-form-control>
+
+    </nz-form-item>
+    <nz-form-item *ngSwitchCase="'Password'">
+      <nz-form-label [nzRequired]="formItem.isRequired" [nzFor]="formItem.name">{{formItem.label | translate}}
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="formItem.msg|translate">
+        <input nz-input type="password" placeholder="{{formItem.placeHolder | translate}}"
+          [formControlName]="formItem.name" (blur)="emitValue(formItem)" [maxlength]="formItem.maxlength" />
+      </nz-form-control>
+    </nz-form-item>
+    <!-- Select menu -->
   </ng-container>
+</ng-container>

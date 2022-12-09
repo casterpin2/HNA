@@ -63,18 +63,12 @@ export class CmsClassAddUserComponent implements OnInit {
    
     
     const idGetParams = this.activatedRoute.snapshot.params['id'];
-    this.urlFree = 'class/studentOther/'+idGetParams;
+    this.urlFree = 'users/student';
     this.getClassById();
   
     
   }
-  routeManage() {
-    this.router.navigate(['setting/news/crud']);
-  }
-  
-  routeCategory() {
-    this.router.navigate(['setting/news-category']);
-  }
+
  
 
   deleteEvent(data: any) {
@@ -84,7 +78,7 @@ export class CmsClassAddUserComponent implements OnInit {
   public getClassById(){
     const idGetParams = this.activatedRoute.snapshot.params['id'];
     this.cmsService.getAllFreeUrl(`class/${idGetParams}`).subscribe((res:any)=>{
-      this.headerBreadCurm = res.data[0].name
+      this.headerBreadCurm = res[0].name
     })
   }
   cancelPopup(){
@@ -94,9 +88,10 @@ export class CmsClassAddUserComponent implements OnInit {
 
     const postData = {
       "userId": this.userId,
+      "classId":this.activatedRoute.snapshot.params['id']
     }
     this.isUpdate = true;
-    let url = 'clas/addUser/'+this.activatedRoute.snapshot.params['id'];
+    let url = 'users/student';
     this.cmsService.postDataFreeURL(postData, url).subscribe(res => {
       this.message.success("Thêm học sinh thành công");
       this.visibleModal();

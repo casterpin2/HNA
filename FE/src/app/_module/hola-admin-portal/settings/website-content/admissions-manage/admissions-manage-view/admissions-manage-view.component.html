@@ -1,0 +1,49 @@
+<div class="action-btn mb-1">
+    <button nz-button nzType="default" style="border: none;background-color: #fff;box-shadow: none !important;" (click)="routerClose()">
+        <span>< Trở về</span>
+    </button>
+ 
+</div>
+<nz-card class="mr-1">
+    <!-- Big Question -->
+    <form nz-form nz-col [nzXs]="24" nzSm="24" nzXl="24" nzMd="24" nzLg="24"  [formGroup]="contactForm" [nzLayout]="'vertical'">
+                   
+        <nz-form-item >
+            <nz-form-label  [nzFor]="'fullname'">{{"HỌ VÀ TÊN BỐ MẸ" |
+                translate}}
+            </nz-form-label>
+            <nz-form-control [nzErrorTip]="'Không được để trống'|translate">
+                <input nz-input readonly
+                    [formControlName]="'fullname'" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item  >
+            <nz-form-label  [nzFor]="'phoneno'">{{"SỐ ĐIỆN THOẠI LIÊN HỆ" |
+                translate}}
+            </nz-form-label>
+            <nz-form-control [nzErrorTip]="'Không được để trống'|translate">
+                <input nz-input readonly
+                    [formControlName]="'phoneno'" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item >
+            <nz-form-label  [nzFor]="'email'">{{"ĐỊA CHỈ EMAIL" |
+                translate}}
+            </nz-form-label>
+            <nz-form-control [nzErrorTip]="'Không được để trống'|translate">
+                <input nz-input readonly
+                    [formControlName]="'email'" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item >
+            <nz-form-label  [nzFor]="'message'">{{"NỘI DUNG QUAN TÂM" |
+                translate}}
+            </nz-form-label>
+            <nz-form-control [nzErrorTip]="'Không được để trống'|translate">
+                <textarea nz-input rows="4" readonly nzAutosize
+                 [nzAutosize]="{ minRows: 3 }" [formControlName]="'message'"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+
+    </form>
+</nz-card>

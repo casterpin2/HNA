@@ -8,7 +8,7 @@
   
   .main-header {
     .bg-dark {
-      background: #42A998;
+      background: #2092bc !important;
   
       li.ant-menu-item-selected {
         background: $color_bg_blue !important;
@@ -18,19 +18,19 @@
       }
   
       .ant-menu-sub {
-        color: $color_white;
+        color: $color_white  !important;
   
         /* background: #0078b6 !important; */
       }
     }
   
     .ant-menu.ant-menu-dark {
-      color: $color_white;
+      color: $color_white  !important;
   
       /* background: #0078b6 !important; */
   
       .ant-menu-sub ul.ant-menu-dark > li {
-        color: $color_white;
+        color: $color_white  !important;
   
         /* background: #0078b6 !important; */
       }
@@ -44,7 +44,8 @@
     }
   
     .bg-light {
-      background: $color_white;
+      background: $color_white !important;
+      background-color: $color_white !important; 
     }
   }
   

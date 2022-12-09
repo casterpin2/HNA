@@ -1,0 +1,8 @@
+<div>
+    <h2 class="header-page">{{dataItem?.header}}</h2>
+    <nz-breadcrumb>
+      <ng-container *ngFor="let item of dataItem?.bItem">
+        <nz-breadcrumb-item ><a>{{item.title}}</a></nz-breadcrumb-item>
+      </ng-container>
+    </nz-breadcrumb>
+  </div>

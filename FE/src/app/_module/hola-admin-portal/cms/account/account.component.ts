@@ -7,7 +7,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzThMeasureDirective } from 'ng-zorro-antd/table';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { Observable, Observer } from 'rxjs';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 
 import { takeUntil } from 'rxjs/operators';
 import { ControlDynamic } from '@models/shared-component.model';
@@ -56,7 +56,7 @@ export class AccountComponent  implements OnInit {
     this.getDetail();
     
   }
-  getProductId() {}
+
   async renderForm() {
     this.accountForm = this.fb.group({});
     this.controlArray = [
@@ -152,14 +152,14 @@ export class AccountComponent  implements OnInit {
     }
     const TYPE = this.activatedRoute.snapshot.params['type'];
     this.isUpdated = true;
-    let url = `users/detail/${idGetParams}`
+    let url = `users/${idGetParams}`
     this.cmsService
       .getAllFreeUrl(url)
       .subscribe(
         (res: any) => {
-          this.avatarUrl = res.data.avatar;
-          res.data.password = "12345678";
-          this.accountForm.patchValue(res.data);
+          this.avatarUrl = res.avatar;
+          res.password = "12345678";
+          this.accountForm.patchValue(res);
           this.accountForm.controls.password.disable();
           this.accountForm.controls.username.disable();
           //console.log(this.accountForm);
@@ -187,7 +187,7 @@ export class AccountComponent  implements OnInit {
           (res: any) => {
             
             this.message.success('Tạo mới tài khoản thành công');
-            this.router.navigate(['cms/student']);
+            this.cancel();
           },
           (err:any) => {
             this.message.error(
@@ -200,11 +200,11 @@ export class AccountComponent  implements OnInit {
       formRawData.id = idGetParams;
      
       this.cmsService
-        .update(formRawData, MODULE.USER)
+        .putDataFreeUrl(formRawData, `users/${idGetParams}`)
         .subscribe(
           (res) => {
             this.message.success('Cập nhật tài khoản thành công');
-            this.router.navigate(['cms/student']);
+            this.cancel();
           },
           (err) => {
             this.message.error(
@@ -216,7 +216,12 @@ export class AccountComponent  implements OnInit {
     }
   }
   cancel() {
-    this.router.navigate(['cms/cms-category']);
+    if(localStorage.getItem("role") == "2"){
+      this.router.navigate(['cms-portal']);
+    }else{
+      this.router.navigate(['cms-portal/cms/student']);
+    }
+    
   }
 
   getAvatarUrl(type: string, data: string) {
@@ -224,7 +229,7 @@ export class AccountComponent  implements OnInit {
   }
   async getRole(){
     this.cmsService.getAllFreeUrl('role').subscribe((res:any)=>{
-      this.controlArray[3].dataSource = res.data;
+      this.controlArray[3].dataSource = res;
     });
   }
 }

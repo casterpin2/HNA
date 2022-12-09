@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "linkText": "Trang chủ",
+        "link": "",
+        "child": false
+    },
+    {
+        "id": 2,
+        "linkText": "Tổng quan",
+        "child": true,
+        "submenu": [
+            {
+                "id": 2.1,
+                "link": "/introduce",
+                "linkText": "Giới thiệu"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "link": "/contact",
+        "linkText": "Cơ sở vật chất",
+        "child": false
+    },
+    {
+        "id": 4,
+        "link": "/contact",
+        "linkText": "Giá trị cốt lõi ",
+        "child": false
+        
+    },
+    {
+        "id": 5,
+        "link": "/client-news",
+        "linkText": "Tin tức & sự kiện",
+        "child": false
+        
+    },
+    {
+        "id": 6,
+        "link": "/contact",
+        "linkText": "Dịch vụ chăm sóc"
+    },
+    {
+        "id": 7,
+        "link": "/contact",
+        "linkText": "Tuyển sinh"
+    }
+]

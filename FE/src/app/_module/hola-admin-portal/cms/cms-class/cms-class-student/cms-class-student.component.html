@@ -1,4 +1,5 @@
-<div class="action-btn mb-1">
+
+<div class="action-btn mb-1" *ngIf="!hideBtn">
 
     <button nz-button nzType="primary" (click)="addUser()">
         Thêm Học sinh
@@ -7,11 +8,17 @@
 
 
 <div *ngIf="!renderData">
-    <app-system-share [isNoCheckStatus]="false"  [isShowDropdownStatus]="false" 
-    (emitDelete)="deleteEvent($event)"
-    [isShowDropdownCategory]="false"  [urlFree]="urlFree" [arrayValues]="arrayValues" [isPagging]="false" 
-    [arrayHeader]="arrayHeader"  [isAction]="true"
-   [dataSourceCategory]="categoryDataSource"
-    [routerNameDetail]="'news/view'"></app-system-share>
+    <app-system-share [isNoCheckStatus]="false" [isShowDropdownStatus]="false" (emitDelete)="deleteEvent($event)"
+        [isShowDropdownCategory]="false" [urlFree]="urlFree" [arrayValues]="arrayValues" [isPagging]="false"
+        [arrayHeader]="arrayHeader" [isAction]="true" [usdBtn]="true" [calenderBtn]="true"
+        (feeModal)="getEmitFeeBtn($event)" (calendarEmit)="modalAttendenceData($event)" [dataSourceCategory]="categoryDataSource" [routerNameDetail]="'news/view'">
+    </app-system-share>
 </div>
-<app-cms-class-add-user *ngIf="visibleForm"  [visibleForm]="visibleForm" (closeModal)="closeModal()"></app-cms-class-add-user>
+<app-cms-class-add-user *ngIf="visibleForm" [visibleForm]="visibleForm" (closeModal)="closeModal()">
+</app-cms-class-add-user>
+<app-add-student-fee *ngIf="visibleModalFee" [isShowPopup]="visibleModalFee" [userId]="userId"
+    (emitData)="modalFeeData($event)">
+</app-add-student-fee>
+<app-attendance-user-view *ngIf="visibleModalAttendence" [isShowPopup]="visibleModalAttendence" [userId]="userId"
+    (emitData)="modalAttendenceData($event)" (emitData)="modalAttendenceCloseData($event)">
+</app-attendance-user-view>

@@ -1,0 +1,75 @@
+<app-header-client></app-header-client>
+<app-breadcurm [imgUrl]="imgUrl"></app-breadcurm>
+<section class="blog-list-wrapper pt-130 pb-130">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog-post-item blog-post-item-v5 wow fadeInUp"
+                    [ngClass]="item.format === 'no-thumb' ? 'post-offwhite':'' || item.format === 'thumb-bg' ? 'post-type-featured-absolute':''"
+                    *ngFor="let item of items | paginate: { itemsPerPage: 4, currentPage: page }">
+                    <div class="post-thumbnail">
+                        <a routerLink="/introduce/{{item.id}}">
+                            <img [src]="item.imgArticleUrl" style="width: 330px; height: 225px;" [alt]="item.title"
+                                class="w-100">
+                        </a>
+                    </div>
+                    <div class="blog-post-entry-content">
+                        <div class="post-meta-wrapper">
+                            <ul>
+                               
+                                <li><a routerLink="/introduce/{{item.id}}" class="post-meta" style="color: #6e727d;
+                                    font-size: 16px;"><i
+                                            class="far fa-calendar-alt"></i>{{item.createdAt | date:dateFormat}}</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <h4 class="post-title"><a routerLink="/introduce/{{item.id}}">{{item.title}}</a></h4>
+                        <div class="post-excerpt">
+                            <p>{{item.shortDescription}}</p>
+                        </div>
+                        <div class="post-read-more">
+                            <a routerLink="/introduce/{{item.id}}" class="filled-btn bg-blue-chalk ">Tìm hiểu thêm <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <pagination-controls (pageChange)="pagging($event)" [responsive]="true" previousLabel="<" nextLabel=">">
+                </pagination-controls>
+            </div>
+            <div class="col-lg-4">
+                <div class="posts-sidebar">
+                    <div class="widget latest-post-widget wow fadeInUp" data-wow-delay="0.3s"
+                        data-wow-duration="1200ms">
+                        <h4 class="sidebar-widget-title">Tin tức mới nhất</h4>
+                        <div class="popular-posts-wrapper">
+                            <!-- Data -->
+                            <div class="popular-posts-item" *ngFor="let item of recentItems">
+                                <div class="popular-posts-thumbnail">
+                                    <a routerLink="/introduce/{{item.id}}">
+                                        <img [src]="item.imgArticleUrl" [alt]="item.title">
+                                    </a>
+                                </div>
+                                <div class="popular-posts-item-content">
+                                    <h5 class="popular-posts-title"><a 
+                                            routerLink="/introduce/{{item.id}}">{{item.title |
+                                            slice:0:40}}...</a></h5>
+                                    <a routerLink="/introduce/{{item.id}}" class="posts-date"><i
+                                            class="far fa-calendar-alt"></i>
+                                        {{item.createdAt | date:dateFormat}}</a>
+                                </div>
+                            </div>
+                            <!-- Data -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div> <!-- /row -->
+        <!-- Pagination -->
+
+        <!-- Pagination -->
+    </div> <!-- .container -->
+</section>
+<app-client-footer></app-client-footer>

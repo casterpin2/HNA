@@ -1,0 +1,23 @@
+<div class="text-right b-2" *ngIf="!addNewBanner">
+    <div nz-row >
+        <div nz-col [nzXl]="22" [nzXs]="15" [nzMd]="22" [nzLg]="22"></div>
+        <div nz-col [nzSpan]="2" class="text-right">
+            <button  class="ml-1" style="width: 95%;"  nz-button nzType="primary" (click)="routeManage()">
+                Thêm
+            </button>
+        </div>
+        
+    </div>
+</div>
+<div *ngIf="!addNewBanner">
+    <app-system-share [module]="module" *ngIf="!isUpdate"
+     [arrayValues]="arrayValues" [arrayHeader]="arrayHeader" [urlFree]="'Information'"
+     [isPagging]="false"
+     (emitDetail)="emitDetail($event)" [isEmit]="true"
+     [isEditor]="true" [isNoCheckStatus]="true" [isAction]="true"
+     (emitDelete)="getDeleteId($event)"
+     >
+    
+    </app-system-share>
+</div>
+<app-information-crud *ngIf="addNewBanner"(returnHome)="addBannerGetValue($event)" [id]="idOutput"></app-information-crud>

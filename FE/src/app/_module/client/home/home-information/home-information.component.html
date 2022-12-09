@@ -1,0 +1,26 @@
+<section class="features-area">
+    <div class="container">
+        <div class="section-internal pt-120 pb-75 border-bottom-purple">
+            <div class="icon-boxes-wrapper">
+                <div class="row">
+                    <!-- Data -->
+                    <div class="col-lg-3 col-md-6" *ngFor="let item of workprocess">
+                        <div class="single-iconic-box iconic-box-v3 wow fadeInUp" [ngClass]="item.boxstyle" data-wow-delay="0.4s">
+                            <div class="iconic-box-icon">
+                                <img [src]="item.icon" [alt]="item.title.toUpperCase()">
+                            </div>
+                            <div class="iconic-box-body">
+                                <h5 class="iconic-box-title">{{item.title}}</h5>
+                                <p class="iconic-box-content">
+                                    {{item.text}}
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Data -->
+                </div> <!-- /.row -->
+            </div> <!-- /.icon-boxes-wrapper -->
+        </div> <!-- /.section-internal -->
+    </div> <!-- /.container -->
+</section>

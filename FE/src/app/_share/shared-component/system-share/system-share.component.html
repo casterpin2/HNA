@@ -1,39 +1,39 @@
-
-<div class="action-checkbox mb-1" *ngIf="arrayCheckBox.length > 0 && !isNoCheckStatus && !hideHeader" >
+<div class="action-checkbox mb-1" *ngIf="arrayCheckBox.length > 0 && !isNoCheckStatus && !hideHeader">
     <div nz-row>
-        <nz-select nz-col nzSpan="4" *ngIf="isShowDropdownCategory" [(ngModel)]="categoryChangeValues" nzPlaceHolder="Danh mục"
-            (ngModelChange)="updateCategory($event)">
+        <nz-select nz-col nzSpan="4" *ngIf="isShowDropdownCategory" [(ngModel)]="categoryChangeValues"
+            nzPlaceHolder="Danh mục" (ngModelChange)="updateCategory($event)">
             <nz-option [nzLabel]="item.name" *ngFor="let item of dataSourceCategory" [nzValue]="item.id">
             </nz-option>
-        </nz-select> 
-        <nz-select nz-col [ngClass]="{'ml-1': isShowDropdownCategory}"  nzSpan="4" *ngIf="isShowDropdownStatus" [(ngModel)]="stausChangeValues" nzPlaceHolder="Trạng thái"
-            (ngModelChange)="updateStatus($event)">
+        </nz-select>
+        <nz-select nz-col [ngClass]="{'ml-1': isShowDropdownCategory}" nzSpan="4" *ngIf="isShowDropdownStatus"
+            [(ngModel)]="stausChangeValues" nzPlaceHolder="Trạng thái" (ngModelChange)="updateStatus($event)">
             <nz-option [nzLabel]="item.name" *ngFor="let item of status" [nzValue]="item.id">
             </nz-option>
         </nz-select>
-        
-        <button nz-col [ngClass]="{'ml-1': isShowDropdownStatus}"  nzSpan="2" nz-button nzDanger (click)="detele()">
+
+        <button nz-col [ngClass]="{'ml-1': isShowDropdownStatus}" nzSpan="2" nz-button nzDanger (click)="detele()">
             Xóa
         </button>
-        <button nz-col class="ml-1"  nzSpan="2" nz-button type="Default" (click)="uncheck()">
+        <button nz-col class="ml-1" nzSpan="2" nz-button type="Default" (click)="uncheck()">
             Bỏ chọn
         </button>
     </div>
 
 </div>
-<nz-table *ngIf="isPagging" #editRowTable nzBordered [nzData]="listOfData" [nzFrontPagination]="false" [nzTotal]="total" [nzLoading]="isLoading"
-    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" nzTableLayout="fixed"
+
+<nz-table *ngIf="isPagging" #editRowTable nzBordered [nzData]="listOfData" [nzFrontPagination]="false" [nzTotal]="total"
+    [nzLoading]="isLoading" [nzPageSize]="pageSize" [nzShowPagination]="true" [nzPageIndex]="pageIndex" nzTableLayout="fixed"
     (nzQueryParams)="onQueryParamsChange($event)">
     <thead>
         <tr>
 
             <th nzWidth="10%" *ngIf="!isNoCheckStatus">
-                <div class="text-center"><label nz-checkbox  [(ngModel)]="checkBoxAll"
-                    (ngModelChange)="checkedItemAll($event)"></label></div>
+                <div class="text-center"><label nz-checkbox [(ngModel)]="checkBoxAll"
+                        (ngModelChange)="checkedItemAll($event)"></label></div>
             </th>
             <ng-container *ngFor="let data of arrayHeader">
                 <ng-container *ngIf="data.key ==='fullName'">
-                    <th nzCustomFilter [nzColumnKey]="data.key" >
+                    <th nzCustomFilter [nzColumnKey]="data.key">
                         <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
                             [nzDropdownMenu]="menu">
                             <i nz-icon nzType="search"></i>
@@ -42,18 +42,19 @@
                     </th>
                 </ng-container>
                 <ng-container *ngIf="data.key !=='fullName'">
-                    <th  [nzColumnKey]="data.key" >{{data.name | translate}}</th>
+                    <th [nzColumnKey]="data.key">{{data.name | translate}}</th>
                 </ng-container>
-                
+
             </ng-container>
             <th nzWidth="10%" *ngIf="isAction">Action</th>
         </tr>
     </thead>
+
     <tbody cdkDropList (cdkDropListDropped)="drop($event)">
         <tr *ngFor="let data of editRowTable.data">
 
-            <td class="text-center" *ngIf="!isNoCheckStatus"><label nz-checkbox [(ngModel)]="data.checked"
-                (ngModelChange)="checkedItem(data.id,$event)"></label></td>
+            <td class="text-center" *ngIf=" !isNoCheckStatus"><label nz-checkbox [(ngModel)]="data.checked"
+                    (ngModelChange)="checkedItem(data.id,$event)"></label></td>
             <ng-container *ngFor="let item of arrayValues">
                 <td>
                     <ng-container *ngIf="item.nameChild" [ngSwitch]="item.type">
@@ -72,10 +73,22 @@
                     </ng-container>
                     <ng-container *ngIf="!item.nameChild" [ngSwitch]="item.type">
                         <ng-container *ngSwitchCase="'Date'">
-                            <span> {{ data[item.name] |date : dateFormat}}</span>
+                            <span> {{ data[item.name] | date : dateFormat}}</span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'Boolean'">
+                            <span> {{ data[item.name] ? "Có mặt" : "Không có mặt"}}</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'Text'">
-                            <span> {{ data[item.name]}}</span>
+                            <span *ngIf="urlFree == 'client/customer'"> 
+                                <ng-container *ngIf="data[item.name].length < 15">
+                                    {{ data[item.name]}}
+                                </ng-container>
+                                 <ng-container *ngIf="data[item.name].length > 14">
+                                    {{ data[item.name] | slice:0:15}}...
+                                </ng-container>
+                               
+                            </span>
+                            <span *ngIf="urlFree !== 'client/customer'"> {{ data[item.name]}}</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'Array'">
                             <ng-container *ngFor="let item of data[item.name]">
@@ -83,9 +96,11 @@
                             </ng-container>
                         </ng-container>
                         <ng-container *ngSwitchCase="'Img'">
-                            <img width="50px" height="50px"  [src]="data[item.name] ? data[item.name] : defaultImg">
+                            <img width="50px" height="50px" [src]="data[item.name] ? data[item.name] : defaultImg">
                         </ng-container>
-
+                        <ng-container *ngSwitchCase="'Status'">
+                            <span> {{ data[item.name] =='Active' ? "Hiển thị" :"Ẩn"}}</span>
+                        </ng-container>
                     </ng-container>
                 </td>
             </ng-container>
@@ -93,16 +108,23 @@
                 <a>Xem tất cả bài viết</a>
             </td>
             <td *ngIf="isAction">
-                <button nz-button style="border: none;background-color: #fff;box-shadow: none !important;"  (click)="remove(data.id)">
+                <button nz-button *ngIf="!isRoleUserStudent" style="border: none;background-color: #fff;box-shadow: none !important;"
+                    (click)="remove(data.id)">
                     <i class="fa-solid fa-trash"></i>
                 </button>
+                <button *ngIf="usdBtn" class="btn" nz-button (click)="remove(data.id)"><i class="fa-solid fa-dollar-sign"></i>
+                    <!-- {{'COMMON.EDIT' | translate}} -->
+                </button>
+                 <button *ngIf="calenderBtn" class="btn" nz-button (click)="calender(data.id)">
+                     <i class="fa-solid fa-calendar-days"></i>
+                  </button>
             </td>
         </tr>
     </tbody>
 </nz-table>
 
-<nz-table *ngIf="!isPagging" [nzData]="listOfData" [nzFrontPagination]="false" [nzShowPagination]="false" [nzLoading]="isLoading"
-    (nzQueryParams)="onQueryParamsChange($event)">
+<nz-table *ngIf="!isPagging" [nzData]="listOfData" [nzFrontPagination]="false" [nzShowPagination]="false"
+    [nzLoading]="isLoading" (nzQueryParams)="onQueryParamsChange($event)">
     <thead>
         <tr>
             <th nzWidth="5%" *ngIf="!isChangeLocation"></th>
@@ -112,7 +134,7 @@
             </th>
             <ng-container *ngFor="let data of arrayHeader">
                 <ng-container *ngIf="data.key ==='fullName'">
-                    <th nzCustomFilter [nzColumnKey]="data.key" >
+                    <th nzCustomFilter [nzColumnKey]="data.key">
                         <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
                             [nzDropdownMenu]="menu">
                             <i nz-icon nzType="search"></i>
@@ -121,15 +143,15 @@
                     </th>
                 </ng-container>
                 <ng-container *ngIf="data.key !=='fullName'">
-                    <th  [nzColumnKey]="data.key" >{{data.name | translate}}</th>
+                    <th [nzColumnKey]="data.key">{{data.name | translate}}</th>
                 </ng-container>
-                
+
             </ng-container>
             <th nzWidth="10%" *ngIf="isAction">Action</th>
         </tr>
     </thead>
-    <tbody >
-        <tr *ngFor="let data of listOfData" >
+    <tbody>
+        <tr *ngFor="let data of listOfData">
             <td class="text-center" *ngIf="!isChangeLocation">
                 <i nz-icon nzType="drag" nzTheme="outline"></i>
             </td>
@@ -157,38 +179,52 @@
                             <span> {{ data[item.name] |date : dateFormat}}</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'Img'">
-                            <img width="50px" height="50px"  [src]="data[item.name] ? data[item.name] : defaultImg">
+                            <img width="50px" height="50px" [src]="data[item.name] ? data[item.name] : defaultImg">
                         </ng-container>
                         <ng-container *ngSwitchCase="'Text'">
                             <span> {{ data[item.name]}}</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'Array'">
                             <ng-container *ngFor="let item of data[item.name]">
-                                <a *ngIf="!idCategory" (click)="outputEmitCategory(item.id,item.name)">{{item.name}}</a><br>
-                                <span *ngIf="idCategory == item.id">{{item.name}}</span><br>
+                                <ng-container *ngIf="!idCategory">
+                                    <a 
+                                    (click)="outputEmitCategory(item.id,item.name)">{{item.name}}</a><br>
+                                </ng-container>
+                                <ng-container *ngIf="idCategory">
+                                    <span *ngIf="idCategory == item.id">{{item.name}}</span><br>
+                                </ng-container>
+                                
                             </ng-container>
                         </ng-container>
                         <ng-container *ngSwitchCase="'Status'">
                             <span> {{ data[item.name] =='Active' ? "Hiển thị" :"Ẩn"}}</span>
                         </ng-container>
-
+                        <ng-container *ngSwitchCase="'Number'">
+                            <span> {{ data[item.name] | currencyVnd}}</span>
+                        </ng-container>
                     </ng-container>
 
                 </td>
             </ng-container>
             <td *ngIf="isAction">
-                <button class="btn" nz-button  (click)="remove(data.id)" ><i nz-icon nzType="delete"
-                    nzTheme="outline">
-                </i>
-                <!-- {{'COMMON.EDIT' | translate}} -->
-            </button>
+                <button class="btn" *ngIf="!isRoleUserStudent" nz-button (click)="remove(data.id)"><i nz-icon nzType="delete" nzTheme="outline">
+                    </i>
+                    <!-- {{'COMMON.EDIT' | translate}} -->
+                </button>
+                
+                <button *ngIf="usdBtn" class="btn" nz-button (click)="feeModalAction(data.id)">
+                   <i class="fa-solid fa-dollar-sign"></i>
+                </button>
+                <button *ngIf="calenderBtn" class="btn" nz-button (click)="calender(data.id)">
+                    <i class="fa-solid fa-calendar-days"></i>
+                 </button>
             </td>
             <td *ngIf="module =='ArticleCategory'">
                 <a (click)="updateCategory(data.id)">Xem tất cả bài viết</a>
             </td>
         </tr>
     </tbody>
-  
+
 </nz-table>
 <nz-dropdown-menu #menu="nzDropdownMenu">
     <div class="ant-table-filter-dropdown">

@@ -16,6 +16,15 @@ import { CmsClassStudentComponent } from './cms-class/cms-class-student/cms-clas
 import { CmsClassFeeComponent } from './cms-class/cms-class-fee/cms-class-fee.component';
 import { CmsClassInformationComponent } from './cms-class/cms-class-information/cms-class-information.component';
 import { CmsClassAddUserComponent } from './cms-class/cms-class-student/cms-class-add-user/cms-class-add-user.component';
+import { FeeModalComponent } from './cms-class/cms-class-fee/fee-modal/fee-modal.component';
+import { SharedPipesModule } from '@share/_pipes/shared-pipes.module';
+import { AddStudentFeeComponent } from './cms-class/cms-class-student/add-student-fee/add-student-fee.component';
+import { AttendanceUserComponent } from './cms-class/attendance-user/attendance-user.component';
+import { AttendanceUserAddComponent } from './cms-class/attendance-user/attendance-user-add/attendance-user-add.component';
+import { AttendanceUserListComponent } from './cms-class/attendance-user/attendance-user-list/attendance-user-list.component';
+import { AttendanceUserViewComponent } from './cms-class/attendance-user/attendance-user-view/attendance-user-view.component';
+import { HeaderModule } from '@layout/header/header.module';
+
 
 
 @NgModule({
@@ -27,7 +36,13 @@ import { CmsClassAddUserComponent } from './cms-class/cms-class-student/cms-clas
     CmsClassStudentComponent,
     CmsClassFeeComponent,
     CmsClassInformationComponent,
-    CmsClassAddUserComponent
+    CmsClassAddUserComponent,
+    FeeModalComponent,
+    AddStudentFeeComponent,
+    AttendanceUserComponent,
+    AttendanceUserAddComponent,
+    AttendanceUserListComponent,
+    AttendanceUserViewComponent,
   ],
   imports: [
     CommonModule,
@@ -36,7 +51,9 @@ import { CmsClassAddUserComponent } from './cms-class/cms-class-student/cms-clas
     ReactiveFormsModule,
     InitNgZorroAntdModule,
     TranslateModule,
-    FormsModule
+    FormsModule,
+    SharedPipesModule,
+    HeaderModule
   ],
   providers: [
     CmsService,

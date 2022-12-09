@@ -2,7 +2,13 @@ export enum MODULE {
     LOGIN = 'LOGIN',
     USER = "USER",
     UPLOAD = "UPLOAD",
-    CLASS ="CLASS"
+    CLASS = "CLASS",
+    ARTIClE_CATEGORY = "ArticleCategory",
+    ARITCLE = "ARTICLE",
+    BANNER = "BANNER",
+    COURSE_HOMEPAGE = "COURSE_HOMEPAGE",
+    INFORMATION = "INFORMATION",
+    SETTING = "SETTING"
 }
 
 // interface IApiUrl {
@@ -20,21 +26,59 @@ export class ServiceUrl {
             Update: 'users/login'
         },
         "USER": {
-            GetAll: 'users/show',
-            Create: 'users/create',
+            GetAll: 'users',
+            Create: 'users',
             Update: 'users',
             Delete: 'users',
-            GetById: 'users/detail'
+            GetById: 'users'
         },
         "UPLOAD": {
             Update: 'upload'
         },
         "CLASS": {
-            GetAll: 'class/show',
-            Create: 'class/create',
-            Update: 'class/update',
+            GetAll: 'class',
+            Create: 'class',
+            Update: 'class',
             Delete: 'class',
-            GetById: 'class/detail'
+            GetById: 'class'
+        }, "ArticleCategory": {
+            GetAll: "ArticleCategory",
+            Create: "ArticleCategory",
+            Update: "ArticleCategory",
+            GetById: 'ArticleCategory'
+        },
+        "ARTICLE": {
+            GetAll: "Article",
+            Create: "Article",
+            Update: "Article",
+            GetById: 'Article'
+        },
+        "ARTICLE_ORDER": {
+            Create: "Article/displayOrder",
+
+        },
+        "BANNER": {
+            GetAll: "Banner",
+            Create: "Banner",
+            Update: "Banner",
+            GetById: 'Banner'
+        },
+        "BANNER_ORDER": {
+            Create: "Article/displayOrder",
+        },
+        "COURSE_HOMEPAGE": {
+            GetAll: "courses/on-homepage"
+        },
+        "INFORMATION": {
+            GetAll: "Information",
+            Create: "Information",
+            Update: "Information",
+            GetById: 'Information',
+            Delete: "Information"
+        },
+        "SETTING": {
+            Update: "Setting",
+            GetById: 'Setting',
         }
     }
 }

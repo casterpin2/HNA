@@ -1,0 +1,30 @@
+[
+    {
+        "id":1,
+        "icon":"flaticon-video-player",
+        "title":"Video Meeting",
+        "text":"Quis autem veleum reprende voluptate veesse quam molestic onseq velillum dolorem",
+        "style":"single-feature-box-v2-color-1"
+    },
+    {
+        "id":2,
+        "icon":"flaticon-volume",
+        "title":"Enhanced Audio",
+        "text":"Sed ut perspiciatis undeonis natus error sit voluacc santium doloremque laudantium",
+        "style":"single-feature-box-v2-color-2"
+    },
+    {
+        "id":3,
+        "icon":"flaticon-live-chat",
+        "title":"Live Streaming",
+        "text":"But I must explain to you how all this mistaken ideden uncing pleasure and praising",
+        "style":"single-feature-box-v2-color-3"
+    },
+    {
+        "id":4,
+        "icon":"flaticon-microphone",
+        "title":"Call Recording",
+        "text":"On the other hand denounce with righteous indignation and dislike men beguiled",
+        "style":"single-feature-box-v2-color-4"
+    }
+]

@@ -1,0 +1,8 @@
+<div class="text-left" *ngIf="!isCreated && !isUpdated && !isStudentRole">
+    <button  nz-button nzType="primary" (click)="attendence()">
+       Thêm mới điểm danh
+    </button>
+</div>
+
+<app-attendance-user-list *ngIf="!isCreated && !isUpdated" (eventEmitUpdated)="getEventUpdate($event)"></app-attendance-user-list>
+<app-attendance-user-add *ngIf="isCreated || isUpdated" [attendenceId]="attendenceId" (eventDone)="getEventDone()"></app-attendance-user-add>

@@ -1,9 +1,9 @@
 
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, SimpleChange } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DATE_TIME_FORMAT, DEFAULT_IMG } from '@models/constant.model';
+import { DATE_FOMAT, DATE_TIME_FORMAT, DEFAULT_IMG } from '@models/constant.model';
 import { DataSource, ValuesSystem } from '@models/shared-component.model';
 import { AuthenticationService } from '@services/authen.services';
 import { CmsService } from '@services/cms.service';
@@ -44,12 +44,19 @@ export class SystemShareComponent implements OnInit {
   @Input() isShowDropdownCategory: boolean = false;
   @Input() dataSourceCategory: DataSource[] = [];
   @Output() emitChangeCatgegory = new EventEmitter<any>();
-  @Input() modulePermission : string;
+  @Input() modulePermission: string;
   @Input() hideHeader = false;
   @Output() emitChangeItem = new EventEmitter<any>();
   @Input() hideSearch = false;
   @Input() actionDelete = false;
+  @Input() usdBtn = false;
+  @Input() calenderBtn = false;
   isLoading = false;
+  @Output() feeModal = new EventEmitter<any>();
+  @Input() dataSelectedOutSide: string;
+  @Input() isRoleUserStudent = false;
+  @Output() calendarEmit = new EventEmitter<any>();
+  @Input() hideCheckBox :boolean = false;
   public status: DataSource[] = [
     { id: "Active", name: "Hiển thị" },
     { id: "Hide", name: "Ẩn" }]
@@ -71,7 +78,7 @@ export class SystemShareComponent implements OnInit {
   isActionSort = false;
   arrayTemp: any = [];
   arrayCheckBox: any = [];
-  dateFormat = DATE_TIME_FORMAT;
+  dateFormat = DATE_FOMAT;
   stausChangeValues: string;
   categoryChangeValues: string;
   checkBoxAll: boolean = false;
@@ -80,14 +87,14 @@ export class SystemShareComponent implements OnInit {
   searchValue = '';
   form = new FormGroup({
     searchName: new FormControl('')
- });
+  });
+  @Input() emptyQueryString:boolean = false;
+  constructor(private cmsService: CmsService, private message: NzMessageService, private router: Router, private autService: AuthenticationService) {
 
-  constructor(private cmsService: CmsService, private message: NzMessageService, private router: Router,private autService: AuthenticationService) {
-
-   }
+  }
 
   ngOnInit(): void {
-    this.loadDataFromServer(this.pageIndex, this.pageSize);
+    //this.loadDataFromServer(this.pageIndex, this.pageSize);
   }
   onQueryParamsChange(params: NzTableQueryParams, dataStr?: any): void {
     this.searchObject = params;
@@ -95,59 +102,54 @@ export class SystemShareComponent implements OnInit {
     this.loadDataFromServer(pageIndex, pageSize);
   }
   loadDataFromServer(pageIndex: number, pageSize: number, searchStr?: string): void {
-   
-    this.listOfData  =[];
-    this.arrayTemp =[];
+    this.isRoleUserStudent = localStorage.getItem("role") == '2' ? true : false;
+    if(localStorage.getItem("role") == '2' ){
+      this.isNoCheckStatus = true;
+    }
+
+    this.listOfData = [];
+    this.arrayTemp = [];
     const inputArray = [pageIndex, pageSize];
     this.queryForm.pageNo = pageIndex,
-    this.queryForm.pageSize = pageSize;
-      if (!this.isPagging) {
-        this.queryForm.pageSize = 10000000;
-      }
+      this.queryForm.pageSize = pageSize;
+    this.queryForm["isPagging"] = this.isPagging;
+    if (!this.isPagging) {
+      this.queryForm.pageSize = 10000000;
+    }
     if (searchStr) {
       this.queryForm.searchStr = encodeURIComponent(searchStr.trim());
     } else {
       this.queryForm.searchStr = '';
     }
     this.isLoading = true;
-    
-    this.cmsService.getAllFreeUrl(this.urlFree,this.queryForm).subscribe((res: any) => {
-      if(!this.isPagging){
-        this.listOfData = res.data;
+    this.listOfData=[];
+    if(this.emptyQueryString){
+      this.queryForm = {};
+    }
+    this.cmsService.getAllFreeUrl(this.urlFree, this.queryForm).subscribe((res: any) => {
+      this.listOfData = res.data;
 
-        this.listOfData.forEach((item: any, index: number) => {
-          item.displayOrder = index + 1;
-        })
-        this.arrayTemp = [...this.listOfData];
-        this.total = res.totalRecords;
-      } else{
-        this.listOfData = res.data.items;
-
-        this.listOfData.forEach((item: any, index: number) => {
-          item.displayOrder = index + 1;
-        })
-        this.arrayTemp = [...this.listOfData];
-        this.total = res.data.total;
-      }
+      this.setCheckedItem();
+      this.arrayTemp = [...this.listOfData];
+      this.total = res.totalRecords;
       this.actionDelete = false;
       this.isLoading = false;
-    }, ((err:any) => {
+    }, ((err: any) => {
       this.message.error(err.errListCode.message);
       this.isLoading = false;
     }));
-
+    
   }
 
   routerDetail(id: string) {
     if (this.isEmit) {
       this.emitDetail.emit(id);
     } else {
-      this.router.navigate([`setting/${this.routerNameDetail}/${id}`]);
+      this.router.navigate([`cms-portal/setting/${this.routerNameDetail}/${id}`]);
     }
 
   }
   drop(event: any): void {
-    moveItemInArray(this.listOfData, event.previousIndex, event.currentIndex);
 
   }
   saveDrapDrop() {
@@ -179,7 +181,7 @@ export class SystemShareComponent implements OnInit {
     if (event) {
       this.arrayCheckBox.push(id);
       this.arrayCheckBox = _.uniq(this.arrayCheckBox);
-      
+
     } else {
       this.arrayCheckBox = this.arrayCheckBox.filter((x: string) => x != id);
     }
@@ -187,7 +189,7 @@ export class SystemShareComponent implements OnInit {
     this.emitChangeItem.emit(this.arrayCheckBox);
   }
   checkedItemAll(event: any) {
-    
+
     if (event) {
       this.listOfData.forEach(item => {
         item.checked = true;
@@ -209,7 +211,7 @@ export class SystemShareComponent implements OnInit {
   keyEvent(event: KeyboardEvent) {
     if (event.keyCode == 13) {
       // Your row selection code
-      if(!this.searchText){
+      if (!this.searchText) {
         return;
       }
       this.loadDataFromServer(this.pageIndex, this.pageSize, this.searchText);
@@ -226,9 +228,7 @@ export class SystemShareComponent implements OnInit {
     this.emitDelete.emit(this.arrayCheckBox);
   }
   outputEmitCategory(id: string, name: string) {
-    if (!this.isGetFreeUrl) {
-      this.emitChooseCategory.emit(id);
-    }
+    this.emitChooseCategory.emit(id);
 
   }
   updateContent(value: string, id: string) {
@@ -261,28 +261,47 @@ export class SystemShareComponent implements OnInit {
 
   search(): void {
     this.visible = false;
-    if(this.isPagging){
+    if (this.isPagging) {
       this.loadDataFromServer(this.pageIndex, this.pageSize, this.searchText);
-    }else{
+    } else {
       this.searchText = this.form.controls.searchName.value;
-      if(this.searchText){
-        this.listOfData = this.listOfData.filter(x=>x.fullName.toLowerCase().includes(this.searchText.toLowerCase()));
-      }else{
+      if (this.searchText) {
+        this.listOfData = this.listOfData.filter(x => x.fullName.toLowerCase().includes(this.searchText.toLowerCase()));
+      } else {
         this.listOfData = this.arrayTemp;
       }
-    
+
     }
-   
+
   }
   ngOnChanges(changes: { [property: string]: SimpleChange }) {
     let change: SimpleChange = changes['actionDelete'];
-    if(change){
-      if(change.currentValue){
-        this.arrayCheckBox =[];
+    if (change) {
+      if (change.currentValue) {
+        this.arrayCheckBox = [];
         this.checkBoxAll = false;
         this.loadDataFromServer(this.pageIndex, this.pageSize, this.searchText);
       }
     }
+  }
+  feeModalAction(userId: string) {
+    this.feeModal.emit(userId);
+  }
+  calender(userId:string){
+    this.calendarEmit.emit(userId);
+  }
+  setCheckedItem() {
+    if (this.dataSelectedOutSide) {
+      this.listOfData.forEach(item => {
+        if (this.dataSelectedOutSide.includes(item.id)) {
+          item.checked = true;
+          this.arrayCheckBox.push(item.id);
+        }
+      })
+      this.checkBoxAll = this.arrayCheckBox.length == this.listOfData.length;
+      this.emitChangeItem.emit(this.arrayCheckBox);
+    }
+
   }
 }
 

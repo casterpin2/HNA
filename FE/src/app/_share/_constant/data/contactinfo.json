@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "icon": "fal fa-map-marker-alt",
+        "title": "Our Location",
+        "info": [
+            "354 Oakridge, Camden NJ 08102 - USA"
+        ],
+        "style": "info-icon-gradient-1"
+    },
+    {
+        "id": 2,
+        "icon": "fal fa-envelope-open-text",
+        "title": "Email Address",
+        "info": [
+            "example@example.com",
+            "www.example.com"
+        ],
+        "style": "info-icon-gradient-2"
+    },
+    {
+        "id": 3,
+        "icon": "fal fa-phone",
+        "title": "Urgent Call",
+        "info": [
+            "+012 (345) 678 99",
+            "+8563214"
+        ],
+        "style": "info-icon-gradient-3"
+    }
+]

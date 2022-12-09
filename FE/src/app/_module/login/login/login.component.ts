@@ -14,10 +14,10 @@ import { MODULE } from '@share/_constant/service-url.constant';
 export class LoginComponent implements OnInit {
 
   validateForm!: FormGroup;
-  isError : boolean = false;
+  isError: boolean = false;
   constructor(
-    private fb: FormBuilder, 
-    private router: Router, 
+    private fb: FormBuilder,
+    private router: Router,
     private csmService: CmsService,
     private authenService: AuthenticationService) { }
 
@@ -39,13 +39,13 @@ export class LoginComponent implements OnInit {
         username: this.validateForm.value.userName,
         password: this.validateForm.value.password,
       }
-      this.csmService.postData(obj, MODULE['LOGIN']).subscribe((res:any) => {          
-          if(res){
-            this.authenService.setToken(res.data, obj.username);            
-           // this.authenService.setPermission(res.pagePermissions);            
-            location.reload();         
-          }          
-      }, (err:any) =>{
+      this.csmService.postData(obj, MODULE['LOGIN']).subscribe((res: any) => {
+        if (res) {
+          this.authenService.setToken(res.accessToken, obj.username, res.role, res.userId);
+          // this.authenService.setPermission(res.pagePermissions);            
+          this.router.navigate(['cms-portal']);
+        }
+      }, (err: any) => {
         console.log(err);
         this.isError = true
       })

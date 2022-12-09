@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import { AuthenticationService } from '@services/authen.services';
+import { HeaderService } from '@services/header.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers:[HeaderService]
 })
 export class AppComponent {
   
@@ -16,19 +18,13 @@ export class AppComponent {
   constructor(
     private translate: TranslateService,
     private router : Router,
-    private authenService: AuthenticationService
+    private authenService: AuthenticationService,
+    private service:HeaderService
   ){
     const lang = localStorage.getItem('lang') || 'vn'
     translate.setDefaultLang(lang);
-
-    this.isLogin = this.authenService.currentUserValue ? true : false;    
-    if(!this.isLogin){
-      this.router.navigate(['/login']);
-    }else{      
-      if(location.pathname == '/login'){
-        this.router.navigate(['hola-portal']); 
-      }      
-    }
+    this.service.setHeader(true);
+  
   }
 
    

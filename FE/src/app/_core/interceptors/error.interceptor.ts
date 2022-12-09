@@ -18,10 +18,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.router.navigate(['/access-denied']);
             }
             if (err.status === 400) {
-                this.message.error(err.error.message.toString());
+                this.message.error(err.error.toString());
             }
             if (err.status === 500) {
-                this.message.error(err.error.message.toString());
+                this.message.error(err.error.toString());
             }
 
             const error = {

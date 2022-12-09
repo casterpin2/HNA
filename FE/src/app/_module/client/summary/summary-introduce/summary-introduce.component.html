@@ -1,0 +1,91 @@
+<app-header-client></app-header-client>
+<app-breadcurm *ngIf="avatarUrl" [imgUrl]="avatarUrl"></app-breadcurm>
+<section class="blog-details-wrapper pt-130 pb-130" >
+    <div class="container">
+        <div class="row">
+            
+            <div [ngClass]="dataLastNews.length ? 'col-lg-8':'col-lg-12'">
+                <div class="blog-details-content">
+                    <div class="blog-post-item">
+                        <div class="post-thumbnail">
+                            <img [src]="avatarUrl"  class="w-100">
+                        </div>
+                    
+                        <h4 class="post-title">{{item.title}}</h4>
+                        <div class="entry-content">
+                            <div class="post-meta-wrapper">
+                                <ul>
+                                   
+                                    <li><a routerLink="/blog-details/" class="post-meta"><i
+                                                class="far fa-calendar-alt"></i>{{date | date : dateFormat}}</a></li>
+                                    
+                                </ul>
+                            </div>
+                            
+                            <div id="item-content">
+               
+                            </div>
+                            <div class="post-share">
+                                <div class="post-tag-cloud">
+                                    <ul>
+                                        <li class="item-heading">Poplular Tags </li>
+                                        <!-- Data -->
+                                        <li *ngFor="let tag of tags| slice:0:3">
+                                            <a >{{tag}}</a>
+                                        </li>
+                                        <!-- Data -->
+                                    </ul>
+                                </div>
+                                <div class="social-links">
+                                    <ul>
+                                        <li class="item-heading">Share :</li>
+                                        <!-- Data -->
+                                        <li *ngFor="let social of socialShare(item.title)">
+                                            <a href="javascript:void(0)" (click)="openSocialPopup(social)">
+                                                <i [class]="social.iconClass"></i>
+                                            </a>
+                                        </li>
+                                        <!-- Data -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Post Author -->
+                
+                    <!-- Comment Area -->
+               
+                    <!-- Comment Form -->
+                  
+                </div> <!-- /.blog-details-content -->
+            </div>
+            <div class="col-lg-4" *ngIf="dataLastNews.length">
+                <div class="posts-sidebar">
+                    <div class="widget latest-post-widget wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1200ms">
+                        <h4 class="sidebar-widget-title">Latest News</h4>
+                        <div class="popular-posts-wrapper">
+                            <!-- Data -->
+                            <div class="popular-posts-item" *ngFor="let item of dataLastNews">
+                                <div class="popular-posts-thumbnail">
+                                    <a routerLink="/blog-details/{{item.id}}">
+                                        <img [src]="item.imgArticleUrl" style="width: 75px;
+                                        height: 70px;" [alt]="item.title">
+                                    </a>
+                                </div>
+                                <div class="popular-posts-item-content">
+                                    <h5 class="popular-posts-title"><a routerLink="/blog-details/{{item.id}}">{{item.title |
+                                            slice:0:40}}...</a></h5>
+                                    <a routerLink="/blog-details/{{item.id}}" class="posts-date"><i class="far fa-calendar-alt"></i>
+                                        {{item.createdAt | date : dateFormat}}</a>
+                                </div>
+                            </div>
+                            <!-- Data -->
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div> <!-- /row -->
+    </div> <!-- .container -->
+</section>
+<app-client-footer></app-client-footer>

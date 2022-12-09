@@ -1,0 +1,62 @@
+<div *ngIf="callApi">
+    <nz-row class="mb-1">
+        <div nz-col nzSpan="12">
+            <span>Ngày điểm danh</span>
+            <nz-date-picker style="width: 100%;" [(ngModel)]="dateValue" [disabled]="disableDate"></nz-date-picker>
+        </div>
+
+        <div nz-col nzSpan="12" class="text-right">
+            <button nz-button class="mr-1" nzType="default" (click)="closeModal()">
+                Quay lại
+            </button>
+            <button nz-button nzType="primary" (click)="addUser()">
+                {{!attendenceId?"Thêm mới" : "Cập nhật"}}
+            </button>
+        </div>
+
+    </nz-row>
+
+
+    <nz-table style="overflow-x: auto;max-height: 550px;" nzShowSizeChanger [nzData]="listOfCourse" 
+        [nzFrontPagination]="false" [nzShowPagination]="false" [nzLoading]="loading" [nzTotal]="total" 
+        [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQueryParamsChange($event)">
+        <thead>
+            <tr>
+                <th nzColumnKey="avatar" [nzSortFn]="true">
+                    {{'Ảnh đại diện' | translate}}
+                </th>
+                <th nzColumnKey="fullName" [nzSortFn]="true">
+                    {{'Tên học sinh' | translate}}
+                </th>
+                <th nzColumnKey="username" [nzSortFn]="true">
+                    {{'Tài khoản' | translate}}
+                </th>
+
+                <th *ngIf="!hideBtn" nzWidth="15%"> {{'COMMON.ACTION' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let data of listOfCourse">
+                <tr>
+
+                    <td> <img width="50px" height="50px" [src]="data.avatar ? data.avatar : defaultImg"></td>
+                    <td>
+                        {{data.fullName }}
+                    </td>
+                    <td>{{ data.username }}</td>
+                    <td>
+                        <nz-select [(ngModel)]="data.isPresent" style="width:100%" (ngModelChange)="changeData(data)">
+                            <ng-container *ngFor="let item of dataSource">
+                                <nz-option [nzValue]="item.id" [nzLabel]="item.name">
+                                </nz-option>
+                            </ng-container>
+                        </nz-select>
+
+                    </td>
+                </tr>
+
+            </ng-container>
+
+        </tbody>
+    </nz-table>
+</div>

@@ -24,7 +24,8 @@ import { ErrorInterceptor } from './_core/interceptors/error.interceptor';
 import { vi_VN, NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
 import { LabelFilterPipe } from './_share/_pipes/label-filter.pipe';
 import { AuthenticationService } from '@services/authen.services';
-
+import { HeaderClientComponent } from './_layout/header-client/header-client.component';
+import { CmsService } from '@services/cms.service';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -37,7 +38,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +61,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BlockUIHttpModule.forRoot({
       blockAllRequestsInProgress: true
     }),
-    
+
   ],
   providers: [
     { provide: NZ_ICONS, useValue: icons },
@@ -69,9 +69,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: NZ_DATE_LOCALE, useValue: vi },
     { provide: NZ_I18N, useValue: vi_VN },
-    AuthenticationService
+    AuthenticationService,
+    CmsService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule {
   constructor(private i18n: NzI18nService) { }

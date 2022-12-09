@@ -1,0 +1,203 @@
+.node-title {
+    padding: 5px;
+    margin: 5px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #000000;
+    .node-btn-action {
+        display: inherit;
+        // position: absolute;
+        // right: 0;
+        .anticon {
+            padding-top: 0.5rem;
+        }
+    }
+    .node-title-content {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-top: 0.3rem;
+    }
+}
+.node-children {
+    position: relative;
+    transition: height 0.2s;
+    margin-left: 1rem;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    padding-left: 0.5em;
+    width: 100%;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.node-item:last-child {
+    border: none;
+}
+
+.node-parent.cdk-drop-list-dragging .node-item:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-custom-placeholder {
+    background: #ccc;
+    border: dotted 2px #999;
+    min-height: 30px;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.border {
+    place-items: center;
+    border: 1px solid;
+    padding: 1rem;
+}
+
+.full {
+    border-image: linear-gradient(45deg, turquoise, greenyellow) 1;
+}
+
+$border: #ddd;
+$border-hover: rgb(71, 71, 71);
+$bg-hover: rgba(0, 0, 0, 0.1);
+$text: rgba(102, 102, 102, 1);
+$text-hover: #000;
+$ident: 30px;
+$left: -($ident);
+$first: #ddf3fe;
+$second: #ddebc8;
+$third: #fefcd5;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 50px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: normal;
+}
+h1 {
+    padding: 0 0 10px 0;
+}
+ol {
+    margin-left: $ident;
+    counter-reset: item;
+}
+
+.wtree {
+    li {
+        list-style-type: none;
+        margin: 10px 0 10px 10px;
+        position: relative;
+        &:before {
+            content: "";
+            counter-increment: item;
+            position: absolute;
+            top: -10px;
+            left: $left;
+            border-left: 1px solid $border;
+            border-bottom: 1px solid $border;
+            width: $ident;
+            height: 15px;
+        }
+        &:after {
+            position: absolute;
+            content: "";
+            top: 5px;
+            left: $left;
+            border-left: 1px solid $border;
+            border-top: 1px solid $border;
+            width: $ident;
+            height: 100%;
+        }
+        &:last-child:after {
+            display: none;
+        }
+        span {
+            display: block;
+            border: 1px solid $border;
+            padding: 10px;
+            color: $text;
+            text-decoration: none;
+           
+        }
+    }
+}
+
+.wtree {
+    li {
+        span {
+            &:hover,
+            &:focus {
+                color: $text-hover;
+                border: 1px solid $border-hover;
+                & + ol {
+                    li {
+                        span {
+                            color: $text-hover;
+                            border: 1px solid $border-hover;
+                        }
+                    }
+                }
+            }
+
+            &:hover + ol,
+            &:focus + ol {
+                li {
+                    &:after,
+                    &:before {
+                        border-color: $border-hover;
+                    }
+                }
+            }
+        }
+    }
+}
+
+li span {
+    background-color: $first;
+}
+li li span {
+    background-color: $second;
+}
+li li li span {
+    background-color: $third;
+}
+
+.display {
+    margin-right: 12px;
+    font-weight: bold;
+}
+
+input,
+label {
+    margin: 12px 0px 20px 0px;
+}
+
+label {
+    padding-left: 6px;
+    padding-right: 12px;
+}
+
+#radio-1:checked + label ~ ol li ol li {
+    display: none;
+}
+#radio-2:checked + label ~ ol li ol li ol li {
+    display: none;
+}
+#radio-3:checked + label ~ li ol li ol li {
+    display: none;
+}

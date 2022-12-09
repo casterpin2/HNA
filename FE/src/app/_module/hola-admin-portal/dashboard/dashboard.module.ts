@@ -23,6 +23,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { SharedComponentModule } from 'src/app/_share/shared-component/shared-component.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { HeaderModule } from '@layout/header/header.module';
+import { AuthenticationService } from '@services/authen.services';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzModalModule,
     ReactiveFormsModule,
     NzFormModule,
-  ]
+    HeaderModule
+  ],
+  providers:[AuthenticationService]
 })
 export class DashboardModule { }

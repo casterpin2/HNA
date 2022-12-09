@@ -26,11 +26,11 @@
                       </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
-                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="teacher">Giáo viên</nz-form-label>
-                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="teacher">Giáo viên</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24"  [nzErrorTip]="'Không được để trống'">
                         <nz-select style="width: 100%;" nzAllowClear formControlName="teacherId">
                             <ng-container *ngFor="let item of teacherAccounts">
-                                <nz-option [nzValue]="item.id" [nzLabel]="item.name">
+                                <nz-option [nzValue]="item.id" [nzLabel]="item.username+'-'+item.fullName">
                                 </nz-option>
                             </ng-container>
                         </nz-select>

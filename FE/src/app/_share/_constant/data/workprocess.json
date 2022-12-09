@@ -1,0 +1,30 @@
+[
+    {
+        "id":1,
+        "icon":"assets/img/feature/flaticon-headphones.png",
+        "title":"Phương pháp giáo dục",
+        "text":"Hiện đại, hiệu quả",
+        "boxstyle":"exclusive-iconic-box-1"
+    },
+    {
+        "id":2,
+        "icon":"assets/img/feature/flaticon-share.png",
+        "title":"Hơn 8,000 học sinh",
+        "text":"14 cơ sở",
+        "boxstyle":"exclusive-iconic-box-2"
+    },
+    {
+        "id":3,
+        "icon":"assets/img/feature/flaticon-chatting.png",
+        "title":"12 năm",
+        "text":"Xây dựng & phát triển",
+        "boxstyle":"exclusive-iconic-box-3"
+    },
+    {
+        "id":4,
+        "icon":"assets/img/feature/flaticon-satisfaction.png",
+        "title":"Đội ngũ nhân sự",
+        "text":"Giàu kinh nghiệm & chuyên môn",
+        "boxstyle":"exclusive-iconic-box-4"
+    }
+]

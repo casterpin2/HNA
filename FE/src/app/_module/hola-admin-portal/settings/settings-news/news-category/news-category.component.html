@@ -1,0 +1,24 @@
+<app-course-template-layout>
+    <ng-container breadcrumbTemplate>
+        <app-breadcrumb-template [dataItem]="breadcrumbData"></app-breadcrumb-template>
+    </ng-container>
+    <ng-container contentTemplate>
+
+        <div class="action-btn mb-1">
+            <a class="mb-1" (click)="routeNews()"><i class="fa-solid fa-pen-to-square" ></i>Bài viết</a>
+            <button nz-button nzType="primary" (click)="routeManage()">
+                Thêm danh mục bài viết
+            </button>
+        </div>
+
+       
+        <div>
+            <app-system-share [module]="'ArticleCategory'"
+             [arrayValues]="arrayValues" [arrayHeader]="arrayHeader" [urlFree]="'ArticleCategory'"
+             [isPagging]="false" [isDrag]="true" (emitChangeCatgegory)="getIdCategory($event)"
+             [routerNameDetail]="'news-category-curd'" (emitChangeLocation)="eventChangeLocation($event)"
+             ></app-system-share>
+        </div>
+
+    </ng-container>
+</app-course-template-layout>

@@ -1,0 +1,21 @@
+<div class="text-right b-2">
+    <div nz-row >
+        <div nz-col [nzXl]="22" [nzXs]="15" [nzMd]="22" [nzLg]="22"></div>
+        <div nz-col [nzSpan]="2" class="text-right">
+            <button  class="ml-1" style="width: 95%;"  nz-button nzType="primary" (click)="routeManage()">
+                Thêm Course
+            </button>
+        </div>
+        
+    </div>
+</div>
+<div>
+    <app-system-share [module]="module"
+     [arrayValues]="arrayValues" [arrayHeader]="arrayHeader" 
+     [isPagging]="false" [isDrag]="true" [isEditor]="false" [isEmit]="true"
+     (emitChangeLocation)="eventChangeLocation($event)"
+     [sortField]="'priorityOnHomePage'"  (emitDetail)="emitDetail($event)"
+     >
+    
+    </app-system-share>
+</div>

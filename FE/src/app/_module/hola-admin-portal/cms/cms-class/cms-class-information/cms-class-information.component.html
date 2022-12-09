@@ -16,6 +16,10 @@
             <nz-tab [nzTitle]="'Danh sách học phí' | translate">
                 <app-cms-class-fee *ngIf="tabIndex === 1"></app-cms-class-fee>
             </nz-tab>
+            <nz-tab [nzTitle]="'Điểm danh' | translate" *ngIf="!isStudentRole">
+                <app-attendance-user *ngIf="tabIndex === 2"></app-attendance-user>
+            </nz-tab>
+  
         </nz-tabset>
       
 

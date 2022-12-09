@@ -1,0 +1,26 @@
+
+
+
+
+<nz-modal [(nzVisible)]="isShowPopup" nzWidth="80%" [nzTitle]="modalTitle" [nzContent]="modalContent"
+    [nzFooter]="modalFooter" (nzOnCancel)="cancelPopup()">
+    
+        <ng-template #modalTitle>Thông tin điểm danh</ng-template>
+        <ng-template #modalContent>
+            <app-system-share *ngIf="render" [isNoCheckStatus]="true"   [isShowDropdownStatus]="false" 
+       
+            [isShowDropdownCategory]="false"   [urlFree]="urlFree" [arrayValues]="arrayValues" [isPagging]="true" 
+            [arrayHeader]="arrayHeader" [hideHeader]="true" [hideCheckBox]="true"
+           
+            [routerNameDetail]="'news/view'"></app-system-share>
+
+
+
+        </ng-template>
+
+        <ng-template #modalFooter>
+          
+        </ng-template>
+   
+
+</nz-modal>

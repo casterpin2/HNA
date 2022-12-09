@@ -45,15 +45,16 @@ export class CmsClassComponent implements OnInit {
   isShowUpdate : boolean = true;
   isShowDelete : boolean = true;
   visibleForm = false;
+  hideBtn = false;
   constructor(private messageService: NzMessageService,
     private cmsService: CmsService,
+    private message: NzMessageService,
     private router: Router) {
 
      }
 
   ngOnInit(): void {
-    this.loadDataFromServer(this.pageIndex, this.pageSize, null, null, []);
-
+    
     this.form = new FormGroup({
       searchName: new FormControl('')
    });
@@ -77,11 +78,14 @@ export class CmsClassComponent implements OnInit {
     }
     const postData = {
       "pageNo":pageIndex,
-      "pageSize":pageSize
+      "pageSize":pageSize,
     }
-    const url = `class/show`;
-    this.cmsService.postDataFreeURL(postData,url).subscribe((res: any) => {
-      this.listOfCourse = res.data.items;
+    let role= localStorage.getItem("role");
+    let userId = localStorage.getItem('userId');
+    const url =role !== "2"? `class` : `class/role/${userId}`;
+    this.hideBtn = role !=="2"?false:true;
+    this.cmsService.getAllFreeUrl(url,postData).subscribe((res: any) => {
+      this.listOfCourse = res.data;
       this.loading = false;
       this.total = res.totalRecords;
      
@@ -105,7 +109,7 @@ export class CmsClassComponent implements OnInit {
 
   
   viewClass(item:any){
-   this.router.navigate(['cms/class/student/'+ item.id]); 
+   this.router.navigate(['cms-portal/cms/class/student/'+ item.id]); 
 
    
   }
@@ -125,7 +129,10 @@ export class CmsClassComponent implements OnInit {
     this.loadDataFromServer(this.pageIndex, this.pageSize, null, null, []);
   }
   deleteCourse(item :any){
-  
+    this.cmsService.deleteFreeUrl(`class/${item.id}`).subscribe(res=>{
+      this.message.success('Xóa lớp học thành công thành công');
+      this.onQueryParamsChange(this.searchObject);
+    })
   }
   closeModal(){    
     this.classId = "";

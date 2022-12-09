@@ -26,7 +26,13 @@ export class CmsService {
         }
 
     }
-
+    delete(id: any, module: string) {
+        return this.baseApiService.delete(ServiceUrl.APIURL[module].Delete, id);
+    }
+    getAll(module: string, queryData?: any) {
+        const queryDataForm = this.convertObjectToString(queryData);
+        return this.baseApiService.get(ServiceUrl.APIURL[module].GetAll + queryDataForm);
+    }
     putDataFreeUrl(postData: any, freeUrl: string): Observable<any> {
         return this.baseApiService.put(freeUrl, postData);
     }
@@ -69,5 +75,12 @@ export class CmsService {
         }
         return '?' + str;
     }
-  
+    getDetail(id: string, module: string, idSecond: string = "", moduleSecond: string = "", queryData?: any): Observable<any> {
+        const queryDataForm = this.convertObjectToString(queryData);
+        if (idSecond) {
+            return this.baseApiService.get(ServiceUrl.APIURL[module].GetById + "/" + id + "/" + ServiceUrl.APIURL[moduleSecond].GetById + "/" + idSecond + queryDataForm);
+        } else {
+            return this.baseApiService.get(ServiceUrl.APIURL[module].GetById + "/" + id);
+        }
+    }
 }

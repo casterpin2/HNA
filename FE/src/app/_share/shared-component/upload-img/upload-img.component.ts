@@ -15,6 +15,7 @@ import { Observable, Observer } from 'rxjs';
 export class UploadImgComponent {
   @Input() avatarUrl: string;
   @Output() avatarEmit = new EventEmitter<any>();
+  @Input() hideImg:boolean = false;
   defaultImg = DEFAULT_IMG.url;
   constructor(private msg: NzMessageService, private cmsService: CmsService) { }
   fileList: NzUploadFile[] = [];
@@ -51,8 +52,10 @@ export class UploadImgComponent {
         formData.append('file', file);
       });
       this.cmsService.postData(formData,MODULE.UPLOAD).subscribe(res => {
-        this.avatarUrl = res.url;
-        this.avatarEmit.emit(res.url);
+       
+      },(err)=>{
+        this.avatarUrl = err.errListCode.text;
+        this.avatarEmit.emit(err.errListCode.text);
       })
     }
 }

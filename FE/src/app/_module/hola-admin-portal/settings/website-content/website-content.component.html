@@ -1,0 +1,28 @@
+<app-course-template-layout>
+    <ng-container breadcrumbTemplate>
+        <div>
+            <h2 class="header-page">Nội dung</h2>
+            <nz-breadcrumb>
+                <nz-breadcrumb-item>Trang chủ</nz-breadcrumb-item>
+                <nz-breadcrumb-item> Cài Đặt</nz-breadcrumb-item>
+                <nz-breadcrumb-item> Nội dung</nz-breadcrumb-item>
+            </nz-breadcrumb>
+        </div>
+    </ng-container>
+    <ng-container contentTemplate>
+        <nz-tabset (nzSelectChange)="selectChange($event)">
+           
+            <nz-tab [nzTitle]="'Banner-Quảng cáo' | translate">
+                <app-banner *ngIf="tabIndex === 0"></app-banner>
+            </nz-tab>
+            <nz-tab [nzTitle]="'Khách hàng feedback' | translate">
+                <app-customer-feedback *ngIf="tabIndex === 1"></app-customer-feedback>
+            </nz-tab>
+            <nz-tab [nzTitle]="'Đăng ký thông tin của khách' | translate">
+                <app-admissions-manage *ngIf="tabIndex === 2"></app-admissions-manage>
+            </nz-tab>
+        </nz-tabset>
+      
+
+    </ng-container>
+</app-course-template-layout>

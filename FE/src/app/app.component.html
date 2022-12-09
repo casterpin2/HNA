@@ -1,18 +1,1 @@
-<nz-layout class="bg-transparent">
-    <block-ui *ngIf="isLogin">
-        <app-header></app-header>
-        <div class="auto-width-layout w-100">
-            <div>
-                <router-outlet></router-outlet>
-            </div>
-
-        </div>
-
-    </block-ui>
-
-    <div *ngIf="!isLogin">
-        <block-ui>
-            <router-outlet></router-outlet>
-        </block-ui>
-    </div>
-</nz-layout>
+<router-outlet></router-outlet>

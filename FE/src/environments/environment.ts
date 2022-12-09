@@ -7,6 +7,14 @@ export const environment = {
   api: {
     baseUrl: 'http://localhost:3000/',    
   },
+  firebaseConfig : {
+    apiKey: "AIzaSyD0dcj4yytkztB3OjmlJPwYElsD24EEswA",
+    authDomain: "educ-5445f.firebaseapp.com",
+    projectId: "educ-5445f",
+    storageBucket: "educ-5445f.appspot.com",
+    messagingSenderId: "511246251697",
+    appId: "1:511246251697:web:4b4530179a1b4550821490"
+  }
 };
 
 /*

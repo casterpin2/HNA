@@ -1,0 +1,39 @@
+<nz-table *ngIf="!id" class="w-auto-scroll" nzShowSizeChanger [nzData]="listOfCourse" [nzFrontPagination]="false"
+    [nzLoading]="loading" [nzTotal]="total" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
+    (nzQueryParams)="onQueryParamsChange($event)">
+    <thead>
+        <tr>
+
+            <th nzCustomFilter nzColumnKey="fullname">
+                {{'Họ và tên' | translate}}
+            </th>
+            <th nzColumnKey="phoneno">
+                {{'Số điện thoại' | translate}}
+            </th>
+            <th nzColumnKey="email">
+                {{'Email' | translate}}
+            </th>
+            <th nzColumnKey="message">
+                {{'Nội dung' | translate}}
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of listOfCourse">
+            <tr>
+
+                <td><a (click)="viewClass(data)">{{ data.fullname }}</a></td>
+                <td>
+                    {{data.phoneno}}
+                </td>
+                <td>{{ data.email}}</td>
+                <td>{{ data.message | slice:0:15 }}...</td>
+
+            </tr>
+
+        </ng-container>
+
+    </tbody>
+</nz-table>
+<app-admissions-manage-view *ngIf="id" [id]="id" (eventClose)="showList()"></app-admissions-manage-view>

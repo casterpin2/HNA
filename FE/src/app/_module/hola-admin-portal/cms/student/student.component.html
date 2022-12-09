@@ -23,26 +23,26 @@
     <ng-container contentTemplate>
        
 
-        <nz-table class="w-auto-scroll" nzShowSizeChanger [nzData]="listOfCourse" [nzFrontPagination]="true"
+        <nz-table class="w-auto-scroll" nzShowSizeChanger [nzData]="listOfCourse" [nzFrontPagination]="false"
             [nzLoading]="loading" [nzTotal]="total" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
             (nzQueryParams)="onQueryParamsChange($event)">
             <thead>
                 <tr>
                     <th nzColumnKey="avatar">Ảnh đại diện</th>
-                    <th nzCustomFilter nzColumnKey="fullName" [nzSortFn]="true">
+                    <th nzCustomFilter nzColumnKey="fullName" >
                         <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
                             [nzDropdownMenu]="menu">
                             <i nz-icon nzType="search"></i>
                         </nz-filter-trigger>
                         {{'Họ và tên' | translate}}
                     </th>
-                    <th nzColumnKey="phoneNumber" [nzSortFn]="true">
+                    <th nzColumnKey="phoneNumber" >
                         {{'Số điện thoại' | translate}}
                     </th>
-                    <th nzColumnKey="username" [nzSortFn]="true">
+                    <th nzColumnKey="username" >
                         {{'Tài khoản' | translate}}
                     </th>
-                    <th nzColumnKey="roleName" [nzSortFn]="true">
+                    <th nzColumnKey="roleName" >
                         {{'Vai trò' | translate}}
                     </th>
 

@@ -1,0 +1,47 @@
+<app-course-template-layout>
+    <ng-container breadcrumbTemplate>
+        <app-breadcrumb-template [dataItem]="breadcrumbData"></app-breadcrumb-template>
+    </ng-container>
+    <ng-container contentTemplate>
+        <ng-container *ngIf="!idCategory">
+            <div class="action-btn mb-1">
+                <a class="mb-1" (click)="routeCategory()"><i class="fa-solid fa-pen-to-square" ></i>Danh mục bài viết</a>
+                <button nz-button nzType="primary" (click)="routeManage()">
+                    Thêm bài viết
+                </button>
+            </div>
+    
+    
+            <div>
+                <app-system-share [isNoCheckStatus]="false" *ngIf="!isUpdate" [isShowDropdownStatus]="true" 
+                (emitChangeStatus)="updateStatus($event)" (emitDelete)="deleteEvent($event)"
+                [isShowDropdownCategory]="true" [urlFree]="urlFree"  [module]="module" [arrayValues]="arrayValues" [isPagging]="true" 
+                [arrayHeader]="arrayHeader" (emitChooseCategory)="getIdCategory($event)" 
+                (emitChangeCatgegory)="updateCategory($event)" [dataSourceCategory]="categoryDataSource"
+                [routerNameDetail]="'news/view'"></app-system-share>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="idCategory">
+            <div class="action-btn mb-1">
+                <button nz-button nzType="default" style="border: none;background-color: #fff;box-shadow: none !important;" (click)="clearId()">
+                    <span>< Trở về</span>
+                </button>
+                <button nz-button nzType="primary" (click)="routeManage()">
+                    Thêm bài viết
+                </button>
+            </div>
+    
+    
+            <div>
+                <app-system-share [module]="module" [isNoCheckStatus]="true" [emptyQueryString]="true" [arrayValues]="arrayValues2"  *ngIf="!isUpdate"
+                [isPagging]="false" [isDrag]="true" [isGetFreeUrl]="true" [urlFree]="urlFree" [isShowDropdownStatus]="true"
+                [arrayHeader]="arrayHeader2" (emitChooseCategory)="getIdCategory($event)"  
+                [idCategory]="idCategory" (emitChangeLocation)="eventChangeLocation($event)"
+                (emitChangeStatus)="updateStatus($event)" (emitDelete)="deleteEvent($event)"
+                [isShowDropdownCategory]="true"    (emitChangeCatgegory)="updateCategory($event)" [dataSourceCategory]="categoryDataSource"
+                [routerNameDetail]="'news/view'"></app-system-share>
+            </div>
+        </ng-container>
+
+    </ng-container>
+</app-course-template-layout>

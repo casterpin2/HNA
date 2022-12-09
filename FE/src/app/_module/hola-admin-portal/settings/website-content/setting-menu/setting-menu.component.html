@@ -1,0 +1,87 @@
+<div nz-row>
+    <div nz-col [nzXs]="4" [nzMd]="2" class="text-left">
+      <button class="ml-1" style="width: 95%;" nz-button nzType="primary" (click)="saveDrapDrop()">
+        {{isChangeLocation?'Đổi vị trí' :"Lưu"}}
+      </button>
+    </div>
+    <div nz-col [nzXs]="16" [nzMd]="20">
+  
+    </div>
+    <div nz-col [nzXs]="4" [nzMd]="2" class="text-right">
+      <button class="ml-1" style="width: 95%;" nz-button nzType="primary" (click)="addNode()">
+        Thêm
+      </button>
+    </div>
+  
+  </div>
+  
+  <div cdkDropListGroup>
+    <div  class="node-parent"
+      >
+  
+      <div *ngFor="let node of nodes">
+      
+        <ng-container *ngTemplateOutlet="tmplNode,context:{node:node}"></ng-container>
+  
+      </div>
+  
+    </div>
+  </div>
+  <ng-template #tmplNode let-node="node">
+    <div class="node-item" [attr.data-id]="node.id" [attr.id]="'node-'+node.id">
+  
+  
+      <ol class="wtree">
+        <li>
+          <div nz-row>
+            <div *ngIf="!isChangeLocation" nz-col nzSpan="1" [nzXs]="1" [nzMd]="1" [nzLg]="1" [nzXl]="1">
+              <i  nz-icon nzType="drag" nzTheme="outline"></i>
+            </div>
+            <div nz-col [nzXs]="3" [nzMd]="15" [nzLg]="19" [nzXl]="21" (click)="toggle(node)"
+              class="text-left">
+            
+              <span>{{node.title}}</span>
+            </div>
+            <div nz-col nzSpan="2" [nzXs]="4" [nzMd]="8" [nzLg]="2" [nzXl]="2">
+              <button class="btn" style="border: none;background-color: #fff;box-shadow: none !important;" nz-button
+                (click)="updateNode(node)" [hidden]="!node.id"><i nz-icon nzType="edit" nzTheme="outline">
+                </i>
+  
+              </button>
+              <button style="border: none;background-color: #fff;box-shadow: none !important;" nz-button nz-dropdown
+                [nzDropdownMenu]="menu" nzPlacement="bottomRight">
+                <i nz-icon style="padding-right: 0.5em;" nzType="plus-circle" nzTheme="outline"></i>
+              </button>
+              <button class="btn" style="border: none;background-color: #fff;box-shadow: none !important;" nz-popconfirm
+                nzPopconfirmTitle="Bạn có muốn xóa không?" class="ml-1" (nzOnConfirm)="delete(node)">
+                <i nz-icon nzType="delete" nzTheme="outline">
+                </i>
+              </button>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item (click)="addNode(node)">Thêm sub menu</li>
+                </ul>
+              </nz-dropdown-menu>
+              <i (click)="toggle(node)" *ngIf="!node.isExpanded && node.children.length" nz-icon nzType="up"
+                nzTheme="outline"></i>
+              <i (click)="toggle(node)" nz-icon *ngIf="node.isExpanded && node.children.length" nzType="down"
+                nzTheme="outline"></i>
+            </div>
+          </div>
+  
+          <div *ngIf="node.isExpanded && node.children.length" >
+            <div *ngFor="let child of node.children" >
+              <ng-container *ngTemplateOutlet="tmplNode,context:{node:child}"></ng-container>
+            </div>
+  
+          </div>
+  
+        </li>
+  
+      </ol>
+  
+    </div>
+  </ng-template>
+  <app-setting-menu-modal *ngIf="addNew" [isShowPopup]="addNew" [node]="itemPost" [isUpdate]="update"
+    (emitData)="getEventEmit($event)">
+  </app-setting-menu-modal>

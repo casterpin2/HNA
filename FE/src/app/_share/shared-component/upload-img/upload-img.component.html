@@ -1,5 +1,5 @@
 <div class="text-center">
-    <div>
+    <div *ngIf="!hideImg">
         <img *ngIf="!avatarUrl" width="200px" height="200px" src={{defaultImg}} alt="" />
         <img *ngIf="avatarUrl" width="200px" height="200px" src={{avatarUrl}} referrerpolicy="no-referrer"
             style="width: 100%;max-width: 200px;" />

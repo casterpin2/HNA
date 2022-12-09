@@ -1,0 +1,30 @@
+[
+    {
+        "id":1,
+        "icon":"fas fa-users",
+        "title":"Daily Active Users",
+        "value":96327,
+        "valuetwo":35
+    },
+    {
+        "id":2,
+        "icon":"fas fa-file-alt",
+        "title":"Project Complate",
+        "value":78630,
+        "valuetwo":72
+    },
+    {
+        "id":3,
+        "icon":"fas fa-cloud-download-alt",
+        "title":"Download Software",
+        "value":56326,
+        "valuetwo":94
+    },
+    {
+        "id":4,
+        "icon":"fas fa-gem",
+        "title":"5 Star Rating Reviews",
+        "value":63020,
+        "valuetwo":28
+    }
+]

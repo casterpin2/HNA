@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="inner-content px-0 bg-transparent auto-width-layout">
+    <nz-layout class="bg-transparent ">
+        <nz-content class="inner-content sticky-any">
+            <div style="margin-bottom: 0.5em;">
+                <ng-content select=[breadcrumbTemplate]></ng-content>              
+                <ng-content select=[menuTemplate]></ng-content>              
+            </div>
+            <div class="card-simple-background main-content" style="padding: 10px">
+                <!-- Content, table -->
+                <ng-content select=[contentTemplate]></ng-content>
+                <!-- End -->
+            </div>
+            <div class="header-actions content-right" >
+                <div>
+                    <!-- Header action -->
+                    <ng-content select=[actionTemplateFooter]></ng-content>
+                    <!-- End -->
+                </div>
+  
+            </div>
+           
+        </nz-content>
+    </nz-layout>
+  </div>

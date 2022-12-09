@@ -6,9 +6,7 @@ import { AuthGuard } from './_core/guards/auth.guars';
 const routes: Routes = [
     {
         path: '',
-        loadChildren: () => import('./_module/hola-admin-portal/hola-admin-portal.module').then(m => m.HolaAdminPortalModule),
-        canActivate: [AuthGuard]
-
+        loadChildren: () => import('@modules/client/client.module').then(m => m.ClientModule),
     },
     {
         path: 'login',
@@ -23,7 +21,7 @@ const routes: Routes = [
         loadChildren: () => import('./_module/access-denined/access-denined.module').then(m => m.AccessDeninedModule),
     },
     {
-        path: 'hola-portal',
+        path: 'cms-portal',
         loadChildren: () => import('./_module/hola-admin-portal/hola-admin-portal.module').then(m => m.HolaAdminPortalModule),
     },
     {

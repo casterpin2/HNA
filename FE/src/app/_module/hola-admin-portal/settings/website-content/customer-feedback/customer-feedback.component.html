@@ -1,0 +1,28 @@
+<ng-container *ngIf="!addNewBanner">
+    <div class="text-right b-2">
+        <div nz-row >
+            <div nz-col [nzXl]="22" [nzXs]="15" [nzMd]="22" [nzLg]="22"></div>
+            <div nz-col [nzSpan]="2" class="text-right">
+                <button  class="ml-1" style="width: 95%;"  nz-button nzType="primary" (click)="routeManage()">
+                    Thêm Phản hồi
+                </button>
+            </div>
+            
+        </div>
+    </div>
+    <div>
+        <app-system-share [module]="module" *ngIf="!isUpdate"
+         [arrayValues]="arrayValues" [arrayHeader]="arrayHeader"  [urlFree]="'client/customer'"
+         [isPagging]="true" [isDrag]="true" [isNoCheckStatus]="true"
+         [routerNameDetail]="'web-content/customer/crud'"
+         (emitChangeLocation)="eventChangeLocation($event)"
+         (emitDetail)="emitDetail($event)" [isEmit]="true"
+         (emitChangeStatus)="updateStatus($event)" [isEditor]="false"
+         (emitDelete)="deleteEvent($event)" [isShowDropdownStatus]="true"
+         >
+        
+        </app-system-share>
+    </div>
+</ng-container>
+
+<app-customer-feedback-crud *ngIf="addNewBanner " (returnBannerHome)="addBannerGetValue($event)" [id]="idOutput"></app-customer-feedback-crud>

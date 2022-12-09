@@ -29,6 +29,10 @@ import { InitNgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
 import { UploadImgComponent } from './upload-img/upload-img.component';
 import { TTemplateContentLayoutComponent } from './t-template-content-layout/t-template-content-layout.component';
 import { SystemShareComponent } from './system-share/system-share.component';
+import { HeaderModule } from '@layout/header/header.module';
+import { CourseTemplateLayoutComponent } from './course-template-layout/course-template-layout.component';
+import { BreadcrumbTemplateComponent } from './breadcrumb-template/breadcrumb-template.component';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 
 
@@ -46,6 +50,8 @@ import { SystemShareComponent } from './system-share/system-share.component';
     UploadImgComponent,
     TTemplateContentLayoutComponent,
     SystemShareComponent,
+    CourseTemplateLayoutComponent,
+    BreadcrumbTemplateComponent
   ],
   imports: [
     CommonModule,
@@ -67,6 +73,8 @@ import { SystemShareComponent } from './system-share/system-share.component';
     ReactiveFormsModule,
     TranslateModule,
     InitNgZorroAntdModule,
+    HeaderModule,
+    CKEditorModule
   ],
   exports: [
     TCheckBoxComponent,
@@ -80,7 +88,9 @@ import { SystemShareComponent } from './system-share/system-share.component';
     FormTemplateComponent,
     UploadImgComponent,
     TTemplateContentLayoutComponent,
-    SystemShareComponent
+    SystemShareComponent,
+    CourseTemplateLayoutComponent,
+    BreadcrumbTemplateComponent
   ]
 })
 export class SharedComponentModule { }

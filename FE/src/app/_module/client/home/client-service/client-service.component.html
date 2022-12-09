@@ -1,0 +1,45 @@
+<section class="blog-and-news-area blog-news-v3 pt-120 pb-90">
+    <div class="container">
+        <div class="section-internal">
+            <div class="row">
+                <div class="section-title text-center mb-55">
+                    <div class="section-heading-tag">
+                        <span class="single-heading-tag">Tin tức gần nhất</span>
+                    </div>
+          
+                </div>
+            </div>
+            <div class="row" *ngIf="render">
+                <!-- Data -->
+                <div class="col-lg-4" *ngFor="let item of items">
+                    <div class="blog-post-item blog-post-item-v5 wow fadeInUp" data-wow-delay="0.6s" data-wow-duration="1500ms">
+                        <div class="post-thumbnail">
+                         
+                            <a routerLink="/new-details/{{item.id}}">
+                                <img style="height: 239px;" [src]="item.imgArticleUrl" [alt]="item.title">
+                            </a>
+                        </div>
+                        <div class="blog-post-entry-content">
+                            <div class="post-meta-wrapper">
+                                <ul>
+                                    <li *ngFor="let tag of item.tags | slice:0:1"><a routerLink="/blog/tag/{{tag}}">{{tag}}</a></li>
+                                </ul>
+                            </div>
+                            <h4 class="post-title"><a routerLink="/new-details/{{item.id}}">{{item.title | slice:0:15}}...</a></h4>
+                            <div class="post-read-more">
+                                <a routerLink="/new-details/{{item.id}}" class="filled-btn bg-blue-chalk">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Data -->
+            </div>
+            <!-- View More Services Button -->
+            <div class="section-button-wrapper">
+                <a routerLink="/client-news" class="filled-btn  bg-mandy">
+                    Xem tất cả <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div> <!-- /.section-internal -->
+    </div> <!-- /.container -->
+</section>

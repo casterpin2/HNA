@@ -1,0 +1,48 @@
+<nz-modal [(nzVisible)]="isShowPopup" class="modal-category" nzWidth="80%" [nzTitle]="title | translate"
+    (nzOnCancel)="cancelPopup()" (nzOnOk)="handleOk()" nzOkText="Lưu" nzCancelText="Hủy">
+    <ng-container *nzModalContent>
+        <table>
+            <thead>
+
+                <tr>
+                    <ng-container *ngFor="let data of controlArray">
+                        <th *ngIf="data.isRequired">
+                            {{data.label | translate}}
+                            <span style="color: red;">*</span>
+                        </th>
+
+                    </ng-container>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let data of dataSource,let idx = index">
+                    <tr>
+                        <ng-container *ngFor="let control of controlArray">
+
+                            <td *ngIf="control.type === typeColumn.TEXT">
+                                <input nz-input placeholder="{{control.placeHolder}}" [(ngModel)]="data[control.name]"
+                                    [maxlength]="control.maxlength" />
+                            </td>
+                            <td *ngIf="control.type === typeColumn.NUMBER">
+                                <nz-input-number style="width: 100%;"
+                                    nzPlaceHolder="{{control.placeHolder  | translate}}"
+                                    [(ngModel)]="data[control.name]" [nzMin]="0"></nz-input-number>
+                            </td>
+                        </ng-container>
+                        <td>
+                            <button class="btn" nz-button (click)="deleteCourse(idx)"><i nz-icon nzType="delete"
+                                    nzTheme="outline">
+                                </i>
+                                <!-- {{'COMMON.EDIT' | translate}} -->
+                            </button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+        <div *ngIf="!isUpdate">
+            <a (click)="addNew()">Thêm mới</a>
+        </div>
+    </ng-container>
+</nz-modal>

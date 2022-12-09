@@ -1,0 +1,54 @@
+[
+    {
+        "id":1,
+        "planclass":"starter-plan",
+        "plantitle":"Single Team",
+        "icon":"assets/img/pricing/pricing-table-icon.png",
+        "price":29.24,
+        "period":"Monthly",
+        "includes":[
+            "Social Media Marketing",
+            "2.100 Keywords",
+            "One Way Link Building"
+        ],
+        "excludes":[
+            "5 Free Optimization",
+            "3 Press Releases"
+        ],
+        "btnstyle":"bg-burning-orange"
+    },
+    {
+        "id":2,
+        "planclass":"professional-plan",
+        "plantitle":"Professional",
+        "icon":"assets/img/pricing/pricing-table-icon.png",
+        "price":57.68,
+        "period":"Monthly",
+        "includes":[
+            "Social Media Marketing",
+            "2.100 Keywords",
+            "One Way Link Building",
+            "5 Free Optimization",
+            "3 Press Releases"
+        ],
+        "excludes":[],
+        "btnstyle":"bg-ocean-blue-gradient"
+    },
+    {
+        "id":3,
+        "planclass":"premium-plan",
+        "plantitle":"Pro - Premium",
+        "icon":"assets/img/pricing/pricing-table-icon.png",
+        "price":99.25,
+        "period":"Monthly",
+        "includes":[
+            "Social Media Marketing",
+            "2.100 Keywords",
+            "One Way Link Building",
+            "5 Free Optimization",
+            "3 Press Releases"
+        ],
+        "excludes":[],
+        "btnstyle":"bg-magenta"
+    }
+]

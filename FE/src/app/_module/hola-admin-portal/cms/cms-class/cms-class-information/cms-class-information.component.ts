@@ -8,11 +8,13 @@ import { AuthenticationService } from '@services/authen.services';
 })
 export class CmsClassInformationComponent implements OnInit {
   tabIndex = 0;
-  
+  isStudentRole = false;
   constructor(private autService: AuthenticationService) { }
 
   ngOnInit(): void {
-    
+    if(localStorage.getItem("role") === "2"){
+      this.isStudentRole = true;
+    }
   }
   selectChange(data:any){
     this.tabIndex = data.index;

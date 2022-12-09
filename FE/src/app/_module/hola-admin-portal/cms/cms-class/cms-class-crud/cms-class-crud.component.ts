@@ -27,7 +27,7 @@ export class CmsClassCrudComponent implements OnInit {
     name: this.fb.control('', [Validators.required]),
     startDate: this.fb.control(new Date(), [Validators.required]),
     endDate: this.fb.control('', [Validators.required]),
-    teacherId: this.fb.control(''),
+    teacherId: this.fb.control('',[Validators.required]),
     studentId: this.fb.control([]),
   })
 
@@ -53,7 +53,7 @@ export class CmsClassCrudComponent implements OnInit {
     let postData = this.form.getRawValue();
     if (this.isUpdate) {
       postData.id = this.classId;
-      this.cmsService.update(postData, MODULE.CLASS).subscribe(res => {
+      this.cmsService.updateFreeUrl(`class/${this.classId}`, postData).subscribe(res => {
         this.message.success('Cập nhật lớp học thành công');
         this.visibleModal();
       },(err:any)=>{
@@ -78,12 +78,8 @@ export class CmsClassCrudComponent implements OnInit {
 
   }
   public async getUserByRole(role: number) {
-    const res = await this.cmsService.getAllFreeUrl('users/getByRole', { role: role }).toPromise() as any;
-    if (role == 2) {
-      this.studentAccounts = res.data;
-    } else {
-      this.teacherAccounts = res.data;
-    }
+    const res = await this.cmsService.getAllFreeUrl('users/teacher').toPromise() as any;
+    this.teacherAccounts = res;
 
 
   }
@@ -105,7 +101,7 @@ export class CmsClassCrudComponent implements OnInit {
       .getAllFreeUrl(url)
       .subscribe(
         (res: any) => {
-          this.form.patchValue(res.data[0]);
+          this.form.patchValue(res);
           //console.log(this.accountForm);
         },
         (err: any) => {

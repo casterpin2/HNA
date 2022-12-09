@@ -1,0 +1,40 @@
+
+
+<nz-modal [(nzVisible)]="isShowPopup" class="modal-category" nzWidth="80%" [nzTitle]="title | translate"
+(nzOnCancel)="cancelPopup()" (nzOnOk)="handleOk()" nzOkText="Lưu" nzCancelText="Hủy">
+<ng-container *nzModalContent>
+  <table>
+      <thead>
+  
+          <tr>
+              <ng-container *ngFor="let data of controlArray">
+                  <th *ngIf="data.isRequired">
+                      {{data.label | translate}}
+                      <span style="color: red;">*</span>
+                  </th>
+                  <th *ngIf="!data.isRequired">{{data.label | translate}}</th>
+              </ng-container>
+          </tr>
+      </thead>
+      <tbody>
+          <ng-container *ngFor="let data of dataSource">
+              <tr>
+                  <ng-container *ngFor="let control of controlArray">
+                      <td *ngIf="control.type === typeColumn.VIEW">
+                          <span>{{data[control.name]}}</span>
+                      </td>
+                    
+                      <td *ngIf="control.type === typeColumn.TEXT">
+                          <input nz-input placeholder="{{control.placeHolder}}"    [(ngModel)]="data[control.name]"
+                              [maxlength]="control.maxlength" />
+                      </td>
+                  </ng-container>
+              </tr>
+          </ng-container>
+      </tbody>
+  </table>
+  <div *ngIf="!isUpdate">
+      <a (click)="addNew()">Thêm mới</a>
+  </div>
+</ng-container>
+</nz-modal>

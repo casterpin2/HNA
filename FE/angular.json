@@ -33,10 +33,24 @@
                             "src/styles.scss",
                             "node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css",
                             "node_modules/ng-zorro-antd/resizable/style/index.min.css",
-                            "node_modules/ngx-toastr/toastr.css"
-
+                            "node_modules/ngx-toastr/toastr.css",
+                            "src/assets/style/font-awesome-6-1.min.css",
+                            "./node_modules/animate.css/animate.css",
+                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "./node_modules/slick-carousel/slick/slick.css",
+                            "./node_modules/magnific-popup/dist/magnific-popup.css",
+                            "src/assets/fonts/fontawesome/css/all.min.css",
+                            "src/assets/fonts/flaticon/flaticon.css",
+                            "src/assets/css/nice-select.css",
+                            "src/assets/css/default.css",
+                            "src/assets/css/style.css",
+                            "src/assets/css/responsive.css"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "./node_modules/jquery/dist/jquery.min.js",
+                            "./node_modules/slick-carousel/slick/slick.min.js",
+                            "./node_modules/wowjs/dist/wow.js"
+                        ]
                     },
                     "configurations": {
                         "production": {

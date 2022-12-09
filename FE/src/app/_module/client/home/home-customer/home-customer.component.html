@@ -1,0 +1,24 @@
+<section class="testimonial-area pt-130 pb-120">
+    <div class="container">
+        <div class="section-title text-center mb-55">
+            <div class="section-heading-tag">
+                <span class="single-heading-tag">Phản hổi từ phụ huynh</span>
+            </div>
+            <h2>Những phản hồi phụ huynh của chúng tôi nói <br class="d-none d-md-block"> về các trường học</h2>
+        </div>
+        <ngx-slick-carousel [config]="settings" class="testimonial-slider" id="testimonial-slider-v1">
+            <!-- Data -->
+            <div class="single-testimonial" ngxSlickItem *ngFor="let item of testimonials">
+                <div class="quote-thumbnail">
+                    <i class="flaticon-right-quote"></i>
+                </div>
+                <p>{{item.content}}</p>
+                <div class="testimonial-author">
+                    <img [src]="item.avatar"[alt]="item.customerName">
+                    <h6>{{item.customerName}} </h6>
+                </div>
+            </div>
+            <!-- Data -->
+        </ngx-slick-carousel> <!-- /.testimonial-slider -->
+    </div> <!-- /.container -->
+</section> 
