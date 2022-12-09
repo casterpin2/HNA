@@ -1,68 +1,73 @@
-## About The Project
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
-Project : Store Store application. There are features such as CRUD products,CURD User,CRUD Order.
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-### Built With
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-* Nodejs Express
+## Description
 
-## Getting Started
-- git clone https://github.com/casterpin2/FE_Store.git
-- `npm install` to install npm package
-- Create database with SQL Shell 
-    `CREATE DATABASE store;` for dev
-    `CREATE DATABASE store_test;` for dev
-- Create User
-    `CREATE USER tuyennn WITH PASSWORD '123456'`
-- Grant database dev and for new user
-    `\c store`
-    `GRANT ALL PRIVILEGES ON DATABASE store TO tuyennn;`
-    `\c store_test`
-    `GRANT ALL PRIVILEGES ON DATABASE store_test TO tuyennn;`
-- Create file .env follow   
-    POSTGRES_HOST=localhost 
-    POSTGRES_DB=store
-    POSTGRES_USER=tuyennn 
-    POSTGRES_PASSWORD=123456 
-    POSTGRES_DB_TEST=store_test 
-    NODE_ENV=dev 
-    POSTGRES_DB_PORT=5432
-    #Bcrypy
-    BCRYPT_PASSWORD=joker 
-    SALT_ROUNDS=10
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-    #JWT_CREDENTIAL
-    ACCESS_TOKEN_SECRET = Access_Token_Secret_#$%_BE_STORE_Authentication
-    ACCESS_TOKEN_LIFE = 10m 
-    `POSTGRES_DB_PORT` is default 5432
-## Migrate Database
-- Run `npm run db-up` mirgate for db dev
-- Run `npm run db-down`rest migrate for db dev
-- Run `npm run test-up` for db test
+## Installation
 
-## Run Project
-- Run `npm run start` run project with port 3000
-## Test and Build
-- Run `npm run buid` build project
+```bash
+$ npm install
+```
 
-- Run `npm run test` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Running the app
 
-## Running prettier
-- Run `npm run prettier` check all development code by prettier in app project.
+```bash
+# development
+$ npm run start
 
-## Run Lint
-- Run `npm run lint` to execute the Eslint
-## ENV
-- You can change the port to match the postgres db settings (.env file)
-##### Usage PostMan
-- http://localhost:3000/user/create - Create user.
-- http://localhost:3000/user/login - login unser.
-- http://localhost:3000/user/show - show all user.
-- http://localhost:3000/user/index - get current user with token.
-- http://localhost:3000/product/create -create product.
-- http://localhost:3000/product/show - show all product.
-- http://localhost:3000/product/index/:id - get detail product (:id- id of product).
-- http://localhost:3000/order/create - create order.
-- http://localhost:3000/order/detail -detail order with user token.
-###### Contact
-TuyenNN - tuyennn0209@gmail.com
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
+
+## Test
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+
+## Support
+
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Stay in touch
+
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+Nest is [MIT licensed](LICENSE).
